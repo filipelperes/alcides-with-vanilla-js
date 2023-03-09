@@ -52,12 +52,6 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/functions.js"></script>
-<script>
-	$(document).ready(() => {
-		$('.modal-unit button.gja').css('background-color', '#ca5c47')
-		$('.modal-unit button.gja').css('color', '#fff')
-		$('.modal-unit button.gja').css('font-weight', 'bold')
-	})
-</script>
+<script src="js/onStart.js"></script>
 </body>
 </html>
