@@ -4,15 +4,15 @@ $(function() {
 
     //MOSTRAR EM QUAL PAGINA ESTÁ
     let url = window.location.href.split('/')
-    url[url.length - 1] === "" ? $("nav.menu a[href='home']").addClass('menu-selected') : $('nav.menu a[href=' + url[url.length - 1] + ']').addClass('menu-selected')
+    $('nav.menu a[href=' + (url[url.length - 1] === "" ? 'home' : url[url.length - 1]) + ']').addClass('menu-selected')
 
     if (screen < 768) {
 
         //MENU RESPONSIVO
-        $('.fa-bars').click((e) => {
+        $('header i.fa-solid').on('click', (e) => {
             e.stopPropagation();
             $(this).find('nav.menu').slideToggle()
-            $('i.fa-bars').toggleClass('fa-xmark')
+            $('header i.fa-solid').toggleClass('fa-xmark')
             document.addEventListener('click', (e) => {
                 const $trigger = $('i.fa-bars')
                 if ($trigger !== e.target && !$trigger.has(e.target).length) {
@@ -25,7 +25,7 @@ $(function() {
         //PRODUTOS
         $('.button-produtos').on('click', (e) => {
             let classes = e.currentTarget.children[1].className.split(' ')
-            $(this).find('.produto-list-cont ul.' + classes[0]).slideToggle()
+            $(this).find('.produto-list-container ul.' + classes[0]).slideToggle()
             $('i.' + classes[0]).toggleClass('fa-chevron-up')
         })
 
