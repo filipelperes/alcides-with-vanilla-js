@@ -1,36 +1,55 @@
-import { imgs } from 'imgs'
-$(function() {
-    const btnProduto = $('.button-produto')
-    const loc = window.location.pathname;
-    const dir = loc.substring(0, loc.lastIndexOf('/'));
-    console.log(loc)
-    console.log(dir)
-    console.log(imgs)
+(($) => {
+    $(() => {
+        const swiperProps = {
+            loop: true,
+            setWrapperSize: true,
+            direction: 'vertical',
+            spaceBetween: 36,
+            touchEventsTarget: 'container',
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            //autoHeight: true,
+            freemode: true,
 
-    let screen = $(window).width()
-    window.onresize = (e) => screen = $(window).width()
+            navigation: {
+                enable: false,
+            },
 
-    //MOSTRAR EM QUAL PAGINA ESTÁ
-    let url = window.location.href.split('/')
-    $('nav.menu a[href=' + (url[url.length - 1] === "" ? 'home' : url[url.length - 1]) + ']').addClass('menu-selected')
-        //PRODUTOS
-    btnProduto.on('click', (e) => {
-        let classes = e.currentTarget.children[1].className.split(' ')
-        slideToggle('.produto-list-container ul.' + classes[0])
-        toggleClass('i.' + classes[0], 'fa-chevron-down')
-    })
+            breakpoints: {
+                // when window width is >= 768px
+                768: {
+                    freemode: false,
+                    slidesPerView: 3,
+                    slidesPerGroup: 3,
+                    direction: 'horizontal',
+                    navigation: {
+                        enable: true,
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                },
+            },
+        }
+        const swiper = new Swiper('.swiper-container', swiperProps);
+        const btnProduto = $('.button-produto');
 
-    const handleUnit = (el1, el2) => {
-        $('.unidades .' + el1).css('display', 'flex')
-        $('.unidades .' + el2).css('display', 'none')
-    }
+        //MOSTRAR EM QUAL PAGINA ESTÁ
+        let url = window.location.href.split('/');
+        $('nav.menu a[href=' + (url[url.length - 1] === "" ? 'home' : url[url.length - 1]) + ']').addClass('menu-selected');
 
+        const slideToggle = (el) => {
+            $(el).slideToggle();
+        };
 
-    const slideToggle = (el) => {
-        $(this).find(el).slideToggle()
-    }
+        const toggleClass = (el, c) => {
+            $(el).toggleClass(c);
+        };
 
-    const toggleClass = (el, c) => {
-        el.toggleCLass(c)
-    }
-})
+        //PRODUTOS CLICK
+        btnProduto.on('click', (e) => {
+            let classe = e.currentTarget.className.split(' ')[0];
+            slideToggle(`.${ classe }-swiper`);
+            toggleClass(`.${ classe } i.fa-solid`, 'fa-chevron-down');
+        });
+    });
+})(jQuery);

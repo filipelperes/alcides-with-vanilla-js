@@ -37,6 +37,11 @@ button {
     border: 0;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
 .container {
     width: 100%;
     max-width: 1400px;
@@ -78,11 +83,6 @@ footer {
     background: var(--secondary-color);
     padding: 1%;
     margin: 2% auto 3% auto;
-}
-
-.img-logo img {
-    width: 100%;
-    height: auto;
 }
 
 nav {
@@ -161,13 +161,14 @@ main .container h2 {
 
 /* Produtos */
 
-.produtos-header {
+.produtos-header,
+.produto-container,
+.produto-container>div {
     width: 100%;
 }
 
 .produto-container {
     margin: 3% 0;
-    width: 100%;
 }
 
 .button-produto {
@@ -182,10 +183,60 @@ main .container h2 {
 .button-produto p {
     flex: 1;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .button-produto i {
     width: auto;
+}
+
+.produto-container .swiper-container {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    padding: 1rem 5%;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+}
+
+.produto-container .swiper-wrapper {
+    padding: 0 1.7rem 0 0;
+}
+
+.produto-container .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7rem;
+}
+
+.produto-container .swiper-slide>* {
+    width: 100%;
+}
+
+.produto-container .swiper-slide h3 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.produto-container .swiper-slide img {
+    margin-top: 1rem !important;
+    max-width: 100px !important;
+    border: 1px solid var(--main-color);
+}
+
+.produto-container .swiper-pagination-bullet-active {
+    background: var(--main-color) !important;
+}
+
+.produto-container .swiper-button-next,
+.produto-container .swiper-button-prev {
+    width: 2rem;
+    color: var(--main-color) !important;
 }
 
 
@@ -224,5 +275,15 @@ footer a {
     footer p,
     footer a {
         font-size: 0.57rem;
+    }
+    .produto-container .swiper-button-next,
+    .produto-container .swiper-button-prev {
+        display: none;
+    }
+    .produto-container .swiper-container {
+        padding: 1rem 0;
+    }
+    .produto-container .swiper-wrapper {
+        padding: 0;
     }
 }
