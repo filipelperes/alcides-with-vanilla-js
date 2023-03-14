@@ -28,8 +28,17 @@ const renderSlideHTML = (v, i) => {
             </div>`
 }
 
-const renderSliderPagination = `<div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>`
+const renderSwiper = (arr, v) => {
+    return `<div class="swiper-container ${ v }-swiper">
+                <div class="swiper-wrapper">
+                    ${ arr.map(val => {
+                        return renderSlideHTML(val, v)
+                    }).join('') }
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>`
+}
 
 const renderProdutoContainerHTML = (v, arr) => {
     const bool = arr.length > 0;
@@ -38,14 +47,7 @@ const renderProdutoContainerHTML = (v, arr) => {
                     <p>${ v !== "quartz-stone" ? v : "Quartz Stone" }</p>
                     <i class="fa-solid fa-chevron-up"></i>
                 </div>
-                <div class="swiper-container ${ v }-swiper">
-                    <div class="swiper-wrapper">
-                        ${ bool ? arr.map(val => {
-                            return renderSlideHTML(val, v)
-                        }).join('') : '' }
-                    </div>
-                    ${ bool ? renderSliderPagination : '' }
-                </div>
+                ${ bool ? renderSwiper(arr, v) : "" }
             </div>`
 }
 
