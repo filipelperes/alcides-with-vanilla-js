@@ -22,6 +22,7 @@
                     slidesPerView: 3,
                     slidesPerGroup: 3,
                     direction: 'horizontal',
+                    touchEventsTarget: 'wrapper',
                     navigation: {
                         enable: true,
                         nextEl: '.swiper-button-next',
@@ -32,6 +33,18 @@
         }
         const swiper = new Swiper('.swiper-container', swiperProps);
         const btnProduto = $('.button-produto');
+        const btnPhone = $('a.phone');
+
+        let screen = $(window).width();
+        window.onresize = (e) => screen = $(window).width();
+
+        if (screen > 767) {
+            btnPhone.click((e) => {
+                const number = e.currentTarget.children[1].innerHTML
+                navigator.clipboard.writeText(number.replace(/[^\w]/g, ""));
+            })
+        } else document.querySelector('a.phone').href = 'tel:01333543130'
+
 
         //MOSTRAR EM QUAL PAGINA ESTÁ
         let url = window.location.href.split('/');

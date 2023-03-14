@@ -28,6 +28,29 @@
 				<li><a href="sobre_nos">Sobre Nós</a></li>
 			</ul>
 		</nav>
+		<div class="social-container flex">
+			<div class="social-side flex column">
+				<a class="phone social-item">
+					<i class="fa-solid fa-square-phone"></i>
+					<p>(13) 3354.3130</p>
+				</a>
+				<a href="mailto:marmoraria.guaruja@terra.com.br" class="social-item">
+					<i class="fa-solid fa-envelope"></i>
+					<p>Email</p>
+				</a>
+			</div>
+			<div class="social-side flex column">
+				<a href="" class="social-item">
+					<i class="fa-brands fa-square-whatsapp"></i>
+					<p>Whatsapp</p>
+				</a>
+				<a target="_blank" href="https://goo.gl/maps/UauGEeufcF8TY71A7" class="social-item">
+					<i class="fa-solid fa-location-dot"></i>
+					<p>Localização</p>
+				</a>
+
+			</div>
+		</div>
 	</div>
 </header>
 
