@@ -363,6 +363,7 @@ footer a {
     }
     .social-container {
         position: relative;
+        order: -1;
         top: 0;
         left: 0;
         transform: translate(0, 0);
