@@ -35,13 +35,32 @@
         const btnProduto = $('.button-produto');
         const btnPhone = $('a.phone');
 
+        const dialogOverlay = $('#dialogoverlay');
+        const dialogBoxHead = $('#dialogboxhead');
+        const dialogBoxBody = $('#dialogboxbody');
+        const dialogBoxFoot = $('#dialogboxfoot');
+        const alertFadeIn = () => { dialogOverlay.fadeIn(); }
+        const alertFadeOut = () => { dialogOverlay.fadeOut(); }
+        const customAlert = (message, title) => {
+            dialogBoxHead.css('display', 'block');
+            if (typeof title === 'undefined') dialogBoxHead.css('display', 'none');
+            else dialogBoxHead.html(`<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ${ title }`);
+
+            dialogBoxBody.html(message);
+            dialogBoxFoot.html('<button class="pure-material-button-contained active border-radius">OK</button>');
+            alertFadeIn();
+        }
+
+
         let screen = $(window).width();
         window.onresize = (e) => screen = $(window).width();
 
         if (screen > 767) {
             btnPhone.click((e) => {
-                const number = e.currentTarget.children[1].innerHTML
+                const number = e.currentTarget.children[1].innerHTML;
                 navigator.clipboard.writeText(number.replace(/[^\w]/g, ""));
+                customAlert('Telefone copiado para a area de transferência!');
+                $('button.active').click(() => { alertFadeOut() })
             })
         } else document.querySelector('a.phone').href = 'tel:01333543130'
 
