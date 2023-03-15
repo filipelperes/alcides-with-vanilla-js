@@ -48,7 +48,7 @@
 
         //MOSTRAR EM QUAL PAGINA ESTÁ
         let url = window.location.href.split('/');
-        $('nav.menu a[href=' + (url[url.length - 1] === "" ? 'home' : url[url.length - 1]) + ']').addClass('menu-selected');
+        $(`nav.menu a[href=${ url[url.length - 1] === "" ? 'home' : url[url.length - 1] }]`).addClass('menu-selected');
 
         const slideToggle = (el) => {
             $(el).slideToggle();
