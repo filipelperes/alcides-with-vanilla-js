@@ -146,7 +146,7 @@ nav ul li a:hover,
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-52%, -50%);
+    transform: translate(-51%, -50%);
     width: 100%;
     max-width: 700px;
     height: 100%;
@@ -162,7 +162,7 @@ nav ul li a:hover,
 .social-item {
     background: #fff;
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 0.77rem;
     border-radius: 7px;
     cursor: pointer;
 }
