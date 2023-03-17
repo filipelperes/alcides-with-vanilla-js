@@ -1,0 +1,301 @@
+main {
+    width: 100%;
+    height: auto;
+}
+
+main .container {
+    overflow-x: hidden;
+    margin: 0;
+}
+
+main .container>div {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    color: var(--third-color);
+    margin: 5% 0;
+}
+
+.title h3 span {
+    display: block;
+    font-weight: normal;
+}
+
+.title h3 span:first-child {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    transform: rotate(-3deg);
+}
+
+.title h3 span:last-child {
+    color: var(--main-color);
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: relative;
+    top: -17px;
+    letter-spacing: 2px;
+}
+
+.title>span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--third-color);
+    top: -11px;
+}
+
+.title>span i {
+    color: var(--third-color);
+    background: var(--secondary-color);
+    padding: 0 17px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content-even {
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    background-origin: border-box !important;
+    width: 100vw !important;
+    margin-top: 5%;
+}
+
+.content-even>.overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.content-even .title {
+    max-width: 768px;
+}
+
+.content-even .title>span {
+    background: rgba(255, 255, 255, 0.5);
+    top: -3px;
+}
+
+.content-even .title>span i {
+    padding: 0;
+    width: 27px;
+    height: 27px;
+    line-height: 27px;
+    border-radius: 50%;
+    text-shadow: none;
+}
+
+.content-even .title>p {
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+.content-even .title>p,
+.content-even h3 span:last-child {
+    color: var(--secondary-color);
+}
+
+main>.container .content-even {
+    background-image: url('../imgs/bgfeijoada.png') !important;
+}
+
+main>.container .content-even:first-child {
+    background-image: url('../imgs/bgingredientes.png') !important;
+}
+
+
+/* Menu */
+.menu-content {
+    height: auto;
+}
+
+
+.title-cat {
+    padding: 2% 0;
+}
+
+.title-cat h4 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.title-cat span {
+    width: 37px;
+    height: 2px;
+    margin-top: 7px;
+    background: var(--third-color);
+}
+
+.menu-section:first-child>.menu-item-container,
+.menu-content {
+    flex-wrap: wrap;
+}
+
+.categoria:not(:first-child) {
+    flex: 50%;
+}
+
+.categoria:not(:first-child) .menu-item {
+    margin-top: 3%;
+}
+
+.categoria:nth-child(even),
+.categoria:nth-child(5) {
+    position: relative;
+}
+
+.categoria:nth-child(2) {
+    top: -350px;
+}
+
+.categoria:nth-child(4) {
+    top: -650px;
+}
+
+.categoria:nth-child(5) {
+    top: -150px;
+}
+
+.title-cat,
+.menu-content,
+.menu-section:first-child,
+.menu-section:last-child,
+.menu-item-container,
+.categoria:not(:first-child) .menu-item {
+    width: 100%;
+}
+
+.menu-section:first-child {
+    margin-bottom: 2rem;
+}
+
+.menu-section:first-child>.menu-item-container .menu-item {
+    width: 50%;
+}
+
+.menu-item {
+    padding: 2%;
+}
+
+.menu-section:last-child {
+    justify-content: space-around;
+    margin-top: 2rem;
+    position: relative;
+    top: -250px;
+    height: auto;
+}
+
+main>.container .content-even:not(:last-child) {
+    margin-top: -10%;
+}
+
+.menu-section:last-child p {
+    width: auto;
+}
+
+.menu-section:last-child p:first-child {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--third-color)
+}
+
+.menu-section:last-child p:last-child {
+    max-width: 400px;
+    width: 100%;
+}
+
+.menu-item p.menu-item-title {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.menu-item p.menu-item-desc {
+    margin-top: 7px;
+    line-height: 1.3rem;
+    font-size: 0.77rem;
+    color: var(--fourth-color);
+}
+
+
+/* Sobre */
+
+.section-content-text {
+    flex: 2;
+}
+
+.section-content-text h4 {
+    text-transform: uppercase;
+}
+
+.section-content-text>p {
+    margin-top: 2%;
+}
+
+.section-content-img {
+    flex: 1 1 20%;
+}
+
+.section-content-img figure {
+    width: 100%;
+    max-width: 480px;
+}
+
+.sobre-container .section-content-img img {
+    max-width: 480px;
+}
+
+.sobre-container .section-content:first-child .section-content-text,
+.sobre-container .section-content:first-child .section-content-img figure:first-child {
+    margin-right: 2%;
+}
+
+.sobre-container .section-content:last-child .section-content-text {
+    margin-left: 2%;
+}
+
+
+/* CHEFS */
+
+.chef-content {
+    justify-content: space-between;
+}
+
+.chef-card {
+    width: 47%;
+    border: 3px solid var(--main-box-shadow);
+}
+
+.chef-card p {
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 2rem;
+    letter-spacing: 2px;
+}
+
+.chef-card p.name {
+    margin-top: 7px;
+}
+
+.chef-card p.desc {
+    color: var(--third-color);
+    font-size: 0.7rem;
+}
+
+chef-card p.desc {
+    color: var(--third-color);
+    font-size: 0.7rem;
+}
+
+hef-card p.desc {
+    color: var(--third-color);
+    font-size: 0.7rem;
+}
