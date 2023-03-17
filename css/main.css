@@ -104,18 +104,11 @@ main .container>div {
     color: var(--secondary-color);
 }
 
-main>.container .content-even {
-    background-image: url('../imgs/bgfeijoada.png') !important;
-}
-
-main>.container .content-even:first-child {
-    background-image: url('../imgs/bgingredientes.png') !important;
-}
-
 
 /* Menu */
 .menu-content {
     height: auto;
+    flex-wrap: wrap;
 }
 
 
@@ -135,51 +128,23 @@ main>.container .content-even:first-child {
     background: var(--third-color);
 }
 
-.menu-section:first-child>.menu-item-container,
-.menu-content {
-    flex-wrap: wrap;
+.menu-item p.menu-item-title {
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-.categoria:not(:first-child) {
-    flex: 50%;
-}
-
-.categoria:not(:first-child) .menu-item {
-    margin-top: 3%;
-}
-
-.categoria:nth-child(even),
-.categoria:nth-child(5) {
-    position: relative;
-}
-
-.categoria:nth-child(2) {
-    top: -350px;
-}
-
-.categoria:nth-child(4) {
-    top: -650px;
-}
-
-.categoria:nth-child(5) {
-    top: -150px;
+.menu-item p.menu-item-desc {
+    margin-top: 7px;
+    line-height: 1.3rem;
+    font-size: 0.77rem;
+    color: var(--fourth-color);
 }
 
 .title-cat,
 .menu-content,
-.menu-section:first-child,
 .menu-section:last-child,
-.menu-item-container,
-.categoria:not(:first-child) .menu-item {
-    width: 100%;
-}
-
-.menu-section:first-child {
-    margin-bottom: 2rem;
-}
-
-.menu-section:first-child>.menu-item-container .menu-item {
-    width: 50%;
+.menu-item-container {
+    width: 100% !important;
 }
 
 .menu-item {
@@ -189,13 +154,6 @@ main>.container .content-even:first-child {
 .menu-section:last-child {
     justify-content: space-around;
     margin-top: 2rem;
-    position: relative;
-    top: -250px;
-    height: auto;
-}
-
-main>.container .content-even:not(:last-child) {
-    margin-top: -10%;
 }
 
 .menu-section:last-child p {
@@ -213,18 +171,76 @@ main>.container .content-even:not(:last-child) {
     width: 100%;
 }
 
-.menu-item p.menu-item-title {
-    text-transform: uppercase;
-    font-weight: bold;
+
+/* Menu Restaurante */
+#restaurante .menu-section:first-child,
+#restaurante .categoria:not(:first-child) .menu-item {
+    width: 100%;
 }
 
-.menu-item p.menu-item-desc {
-    margin-top: 7px;
-    line-height: 1.3rem;
-    font-size: 0.77rem;
-    color: var(--fourth-color);
+#restaurante .menu-section:first-child>.menu-item-container .menu-item {
+    width: 50%;
 }
 
+#restaurante .menu-section:first-child>.menu-item-container {
+    flex-wrap: wrap;
+}
+
+#restaurante .menu-section:first-child {
+    margin-bottom: 2rem;
+}
+
+#restaurante .categoria:not(:first-child) {
+    flex: 50%;
+}
+
+.categoria:not(:first-child) .menu-item {
+    margin-top: 3%;
+}
+
+#restaurante .categoria:nth-child(even),
+#restaurante .categoria:nth-child(5) {
+    position: relative;
+}
+
+#restaurante .categoria:nth-child(2) {
+    top: -173px;
+}
+
+#restaurante .categoria:nth-child(4) {
+    top: -320px;
+}
+
+#restaurante .categoria:nth-child(5) {
+    top: -150px;
+}
+
+#restaurante .menu-section:last-child {
+    position: relative;
+    top: -250px;
+    height: auto;
+}
+
+/* Menu Pizzaria */
+#pizzaria .menu-section:not(:last-child) {
+    width: 50%;
+    flex: 1;
+}
+
+#pizzaria .menu-section:first-child>.menu-section-container {
+    position: relative;
+}
+
+#pizzaria .menu-section:first-child>.menu-section-container:nth-child(1) {
+    top: -350px;
+}
+
+#pizzaria .menu-section:first-child>.menu-section-container:nth-child(2){
+}
+
+#pizzaria .menu-item {
+    width: 100%;
+}
 
 /* Sobre */
 
@@ -290,12 +306,12 @@ main>.container .content-even:not(:last-child) {
     font-size: 0.7rem;
 }
 
-chef-card p.desc {
+.chef-card p.desc {
     color: var(--third-color);
     font-size: 0.7rem;
 }
 
-hef-card p.desc {
+.chef-card p.desc {
     color: var(--third-color);
     font-size: 0.7rem;
 }

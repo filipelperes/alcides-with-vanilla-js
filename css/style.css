@@ -30,6 +30,7 @@ body {
 a {
     text-decoration: none;
     color: var(--main-color);
+    cursor: pointer;
 }
 
 button {
@@ -78,8 +79,9 @@ img {
 /* DIV Header APÓS BODY */
 
 .header {
-    background: url('../imgs/restaurante.png') no-repeat right center;
-    background-attachment: fixed;
+    background-repeat: no-repeat !important;
+    background-position: right center !important;
+    background-attachment: fixed !important;
 }
 
 .header,

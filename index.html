@@ -23,6 +23,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poiret+One&display=swap" rel="stylesheet">
 
     <!-- <script type="module" src="js/produtos/produtos.js"></script> -->
+    <script src="js/jquery.js"></script>
+    <script type="module" src="js/onLoad.js"></script>
 </head>
 
 <body class="flex column">
@@ -34,37 +36,31 @@
                     <!-- Localização, email, telefone, restaurante -->
                     <a class="phone social-item flex border-radius">
                         <i class="fa-solid fa-phone"></i>
-                        <p>(13) 3387-6323</p>
+                        <p></p>
                     </a>
-                    <a href="" class="social-item flex">
+                    <a class="social-item flex">
                         <i class="fa-solid fa-envelope"></i>
                     </a>
-                    <a href="" class="social-item flex">
+                    <a class="social-item flex">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="" class="social-item flex">
+                    <a class="social-item flex">
                         <i class="fa-solid fa-location-dot"></i>
                     </a>
-                    <a href="" class="social-item flex">
+                    <a class="social-item flex">
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
                 </div>
                 <header class="sticky flex column">
                     <div class="menu-logo flex">
-                        <a href="">Restaurante</a>
-                        <a href=""><img src="imgs/logo-360.png"></a>
-                        <a href="">Pizzaria</a>
+                        <a class="menu-logo-restaurante">Restaurante</a>
+                        <div id="logo"><img src="imgs/logo-360.png"></div>
+                        <a class="menu-logo-pizzaria">Pizzaria</a>
                     </div>
                     <nav class="menu flex border-radius">
-                        <a href="">Menu</a>
-                        <a href="">Sobre</a>
-                        <a href="">Chefs</a>
                     </nav>
                 </header>
                 <div class="header-content">
-                    <h1>Bem-vindo!</h1>
-                    <h2>Ao alcide's restaurante</h2>
-                    <h3>Alcide’s Restaurante, amor que se prova há mais de 40 anos.</h3>
                 </div>
             </div>
         </div>
@@ -74,187 +70,6 @@
         <!-- SOBRE, CHEF, MENU e mais 2 divs -->
         <div class="container flex column">
             <div class="menu-container flex column ">
-                <div class="menu-title title flex column">
-                    <h3>
-                        <span>Nosso</span>
-                        <span>Menu</span>
-                    </h3>
-                    <span><i class="fa-solid fa-book-open"></i></span>
-                </div>
-                <div class="menu-content flex">
-                    <div class="menu-section categoria flex column">
-                        <div class="title-cat flex column">
-                            <h4>Pratos da casa</h4>
-                            <span></span>
-                        </div>
-                        <div class="menu-item-container flex">
-                            <div class="menu-item">
-                                <p class="menu-item-title">Camoranga</p>
-                                <p class="menu-item-desc">Camarões Rosa cozidos no molho de tomates e temperos especiais. Servido em moranga recheada e coberta com catupiry. Acompanha arroz ao coco. Sugerido p/ 3 pessoas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Bacalhau á moda</p>
-                                <p class="menu-item-desc">Bacalhau cozido com ervas finas, batatas, cebola, ovos e pimentão. Acompanha arroz. Sugerido p/ 2 pessoas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Risoto Alcide's</p>
-                                <p class="menu-item-desc">Suculento risoto gratinado, com camarões Rosa e frutos do mar (Camarões 7 Barbas, marisco, polvo e lula). Sugerido p/ 3 pessoas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Moqueca Mista</p>
-                                <p class="menu-item-desc">Camarões Rosa (3 unid.) e posta de peixe, cozidos no molho de tomates e temperos especiais, c/ leve toque de azeite de dendê e leite-de-coco. Acompanha arroz ao coco e farofa de dendê. Sugerido p/2 pessoas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé de peixe á catarina</p>
-                                <p class="menu-item-desc">Filé de peixe à dorê coberto c/ uma fina fatia de beringela à dorê, molho de camarão 7 barbas, gratinado c/ catupiry. Acompanha arroz. Sugerido p/ 2 pessoas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Caldeirada</p>
-                                <p class="menu-item-desc">Posta de peixe e camarões rosa (3 unid.) cozidos com polvo, lula, marisco, camarões sete barbas e condimentos especiais. Acompanha arroz. Sugerido p/ 2 pessoas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Peixada no barro</p>
-                                <p class="menu-item-desc">Posta de peixe cozida no molho de frutos do mar (Camarões 7 barbas, marisco, polvo e lula). Acompanha arroz e pirão. Sugerido p/ 2 pessoas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé á moda</p>
-                                <p class="menu-item-desc">Filé de peixe grelhado, coberto c/ lascas de azeitonas verde, champignon e alcaparras. Acompanha batatas coradas e arroz ao alho. Sugerido p/ 3 pessoas.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-section categoria flex column">
-                        <div class="title-cat flex column">
-                            <h4>Camarões</h4>
-                            <span></span>
-                        </div>
-                        <div class="menu-item-container flex column">
-                            <div class="menu-item">
-                                <p class="menu-item-title">Á Grega</p>
-                                <p class="menu-item-desc">Camarões rosa e queijo à milanesa. Acompanha batatas fritas e arroz à grega.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Ao grill (Pastoreia)</p>
-                                <p class="menu-item-desc">Camarões rosa à milanesa, recheado com catupiry. Acompanha fritas, arroz à grega e banana à milanesa.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Á José Novaes</p>
-                                <p class="menu-item-desc">Camarões rosa grelhados s/ casca, com cebola e pimentão verde coberto c/ palmitos. Acompanha batatas soutê e arroz à grega.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Camarão á Africana</p>
-                                <p class="menu-item-desc">Camarões rosa grelhados com casca. Acompanha batatas fritas e arroz à grega.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-section categoria flex column">
-                        <div class="title-cat flex column">
-                            <h4>Peixes</h4>
-                            <span></span>
-                        </div>
-                        <div class="menu-item-container flex column">
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé à Belle Meunière</p>
-                                <p class="menu-item-desc">Filé de peixe grelhado cobertos com camarões 7 barbas, champignon e alcaparras. Acompanha batata soutê.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé à Fiorentina</p>
-                                <p class="menu-item-desc">Filé grelhado, coberto com molho de espinafre, gratinado com queijo parmesão. Acompanha arroz.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé ao Molho de Camarão</p>
-                                <p class="menu-item-desc">Filé de peixe a dorê ou grelhado ao molho de camarões 7 barbas. Acompanha arroz.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé Grelhado</p>
-                                <p class="menu-item-desc">Acompanha batatas soutê ou fritas ou legumes.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé da Mama</p>
-                                <p class="menu-item-desc">Filé de abadejo à milanesa, recheado com catupiry e espinafre. Acompanha salada de batata.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Pescada Grelhada</p>
-                                <p class="menu-item-desc">Acompanha arroz à grega.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Salmão Divino</p>
-                                <p class="menu-item-desc">Salmão grelhado ao molho de agrião e creme de leite. Acompanha arroz ao creme de agrião.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Pescada Verão</p>
-                                <p class="menu-item-desc"></p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Filé da Mama</p>
-                                <p class="menu-item-desc">Filé de abadejo à milanesa, recheado com catupiry e espinafre. Acompanha salada de batata.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Pescada Grelhada</p>
-                                <p class="menu-item-desc">Acompanha arroz à grega.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Salmão Divino</p>
-                                <p class="menu-item-desc">Salmão grelhado ao molho de agrião e creme de leite. Acompanha arroz ao creme de agrião.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Pescada Verão</p>
-                                <p class="menu-item-desc"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-section categoria flex column">
-                        <div class="title-cat flex column">
-                            <h4>Carnes</h4>
-                            <span></span>
-                        </div>
-                        <div class="menu-item-container flex column">
-                            <div class="menu-item">
-                                <p class="menu-item-title">Mignon Alcide's</p>
-                                <p class="menu-item-desc">Filé mignon à milanesa recheado c/ catupiry. Acompanha arroz à grega.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Mignon à Chateaubriend</p>
-                                <p class="menu-item-desc">Filé mignon alto, grelhado mal passado, c/ molho especial tipo madeira e champignons. Acompanha arroz e fritas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Mignon à Parmegiana</p>
-                                <p class="menu-item-desc">Filé mignon à milanesa c/ molho de tomates coberto c/ queijo gratinado. Acompanha arroz.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Mignon à Cubana</p>
-                                <p class="menu-item-desc">Filé mignon e banana à milanesa, acompanhado por ervilhas, palmitos na manteiga e batatas fritas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Mignon à Gaucha</p>
-                                <p class="menu-item-desc">Filé mignon grelhado. Acompanha fritas e farofa.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">Mignon com Fritas</p>
-                                <p class="menu-item-desc">Filé mignon grelhado acompanhado por batatas fritas.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-section categoria flex column">
-                        <div class="title-cat flex column">
-                            <h4>Frangos</h4>
-                            <span></span>
-                        </div>
-                        <div class="menu-item-container flex column">
-                            <div class="menu-item">
-                                <p class="menu-item-title">Supremo à Cubana</p>
-                                <p class="menu-item-desc">Supremo de frango e banana à milanesa, acompanhado por ervilhas e palmitos na manteiga e batatas fritas.</p>
-                            </div>
-                            <div class="menu-item">
-                                <p class="menu-item-title">À Passarinho</p>
-                                <p class="menu-item-desc">Frango em pedaços frito ao alho e óleo. Acompanha fritas e arroz.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-section flex">
-                        <p>E mais...</p>
-                        <p>Entradas, Saladas, Massas, Pratos para as crianças, Porções, Sobremesas, Bebidas, Coquetéis, Caipirinhas e Batidas, Bebidas Quentes e Licores...</p>
-                    </div>
-                </div>
             </div>
             <div class="content-even flex text-shadow">
                 <div class="overlay flex">
@@ -270,36 +85,8 @@
             </div>
             <div class="sobre-container flex column">
                 <div class="sobre-title title flex column">
-                    <h3>
-                        <span>Sobre o</span>
-                        <span>Alcide's restaurante</span>
-                    </h3>
-                    <span><i class="fa-solid fa-utensils"></i></span>
                 </div>
                 <div class="sobre-content flex column">
-                    <div class="section-content flex">
-                        <div class="section-content-text">
-                            <h4>História</h4>
-                            <p>Inaugurado em 1979, o Alcide’s Restaurante é um dos mais tradicionais restaurantes do Guarujá, litoral de São Paulo. Possui um cardápio variado, indo de Peixes & Frutos do Mar, passando por Carnes e Aves, até Massas, o que
-                                agrada aos mais seletos e requintados paladares.</p>
-                            <p>Seu ambiente rústico, próprio das cidades litorâneas, aliado ao atendimento exclusivo e personalizado, proporciona aconchego, segurança e descontração. Contudo, o que lhe confere fama, credibilidade e fidelidade de seus clientes,
-                                é a qualidade de seus pratos, cada um se compara a iguarias capazes de seduzir todos os sentidos gustativos.</p>
-                        </div>
-                        <div class="section-content-img flex">
-                            <figure><img src="imgs/historia1.png" alt=" "></figure>
-                            <figure><img src="imgs/historia2.png" alt=" "></figure>
-                        </div>
-                    </div>
-                    <div class="section-content flex">
-                        <div class="section-content-img flex">
-                            <figure><img src="imgs/camoranga2.png" alt=" "></figure>
-                        </div>
-                        <div class="section-content-text">
-                            <h4>Venha experimentar!</h4>
-                            <p>o Alcide’s convida os amantes da boa gastronomia caiçara para conhecer e experimentar o verdadeiro sabor do Guarujá.</p>
-                            <p>Aqui você pode conhecer um pouco das variadas alternativas de alimentação que oferecemos em nosso restaurante.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="content-even flex text-shadow">
@@ -355,12 +142,10 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="js/jquery.js"></script>
     <script>
         jQuery.noConflict()
     </script>
-    <script src="js/functions.js"></script>
+    <script type="module" src="js/listeners.js"></script>
 </body>
 
 </html>

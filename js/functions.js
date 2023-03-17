@@ -3,21 +3,7 @@
         const btnProduto = $('.button-produto');
         const btnPhone = $('a.phone');
 
-        const dialogOverlay = $('#dialogoverlay');
-        const dialogBoxHead = $('#dialogboxhead');
-        const dialogBoxBody = $('#dialogboxbody');
-        const dialogBoxFoot = $('#dialogboxfoot');
-        const alertFadeIn = () => { dialogOverlay.fadeIn(); }
-        const alertFadeOut = () => { dialogOverlay.fadeOut(); }
-        const customAlert = (message, title) => {
-            dialogBoxHead.css('display', 'block');
-            if (typeof title === 'undefined') dialogBoxHead.css('display', 'none');
-            else dialogBoxHead.html(`<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ${ title }`);
 
-            dialogBoxBody.html(message);
-            dialogBoxFoot.html('<button class="pure-material-button-contained active border-radius">OK</button>');
-            alertFadeIn();
-        }
 
 
         let screen = $(window).width();
@@ -31,11 +17,6 @@
                 $('button.active').click(() => { alertFadeOut() })
             })
         } else document.querySelector('a.phone').href = 'tel:01333543130'
-
-
-        //MOSTRAR EM QUAL PAGINA ESTÁ
-        let url = window.location.href.split('/');
-        $(`.menu-logo a[href=${ url[url.length - 1] !== "" ? url[url.length - 1] : 'home'  }]`).addClass('menu-selected');
 
         const slideToggle = (el) => {
             $(el).slideToggle();

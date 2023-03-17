@@ -1,12 +1,5 @@
 import { imgs } from './list-produtos.js'
 
-Object.defineProperty(String.prototype, 'capitalize', {
-    value: function() {
-        return this.charAt(0).toUpperCase() + this.slice(1);
-    },
-    enumerable: false
-})
-
 //Layout Produtos
 const fixTitle = (h3) => {
     let title = h3.split('.')[0].split('-').map(val => {
