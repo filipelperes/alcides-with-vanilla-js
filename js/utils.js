@@ -46,3 +46,5 @@ export const addClass = (el, c) => {
 export const toggleClass = (el, c) => {
     el.toggleClass(c)
 }
+
+export const bool = (page) => { return page === 'pizzaria' }

@@ -1,7 +1,9 @@
 import { dataRestaurante, dataPizzaria } from './data.js'
 import { renderHeader } from './header.js'
 import { renderCardapio } from './cardapio.js'
-import { render } from './utils.js'
+import { render, bool } from './utils.js'
+
+let img, img2, d;
 
 const renderSobreTitle = (v) => {
     return `<h3>
@@ -35,8 +37,8 @@ const renderSobreRestaurante = (i, { title, desc, desc2 }) => {
                                     <figure><img src="imgs/historia1.png" alt=" "></figure>
                                     <figure><img src="imgs/historia2.png" alt=" "></figure>
                             </div>
-                            </div>`
-                            :`<div class="section-content flex">
+                            </div>` :
+        `<div class="section-content flex">
                                 <div class="section-content-img flex">
                                     <figure><img src="imgs/camoranga2.png" alt=" "></figure>
                                 </div>
@@ -49,8 +51,38 @@ const renderSobreRestaurante = (i, { title, desc, desc2 }) => {
 }
 
 const renderSobreContent = (page, { history }) => {
-    return page === 'pizzaria' ? history.map(val => { return renderSobrePizzaria(val) }).join('')
-    : history.map((val, i) => { return renderSobreRestaurante(i, val) }).join('')
+    return bool(page) ? history.map(val => { return renderSobrePizzaria(val) }).join('') :
+        history.map((val, i) => { return renderSobreRestaurante(i, val) }).join('')
+}
+
+const renderContentEven = ({ contentEven }) => {
+    const { str, str2, str3 } = contentEven
+    return `<div class="overlay flex">
+                <div class="title flex column">
+                    <h3>
+                        <span>${ str }</span>
+                        <span>${ str2 }</span>
+                    </h3>
+                    <span><i class="fa-solid fa-chevron-down"></i></span>
+                    <p>${ str3 }</p>
+                </div>
+            </div>`
+}
+
+const contentControl = (page) => {
+    if (bool(page)) {
+        img = 'bgtomate'
+        img2 = 'bgfornoalenha'
+        d = 'none'
+    } else {
+        img = 'bgingredientes'
+        img2 = 'bgfeijoada'
+        d = 'flex'
+    }
+
+    document.querySelector('main>.container>div:nth-child(2)').style.backgroundImage = `url(imgs/${ img }.png)`
+    document.querySelector('main>.container>div:nth-child(4)').style.backgroundImage = `url(imgs/${ img2 }.png)`
+    document.querySelector('.chefs-container').style.display = d
 }
 
 
@@ -60,13 +92,6 @@ export const renderPage = (page) => {
     render(renderCardapio(data), document.querySelector('.menu-container'))
     render(renderSobreTitle(page), document.querySelector('.sobre-title'))
     render(renderSobreContent(page, data), document.querySelector('.sobre-content'))
-    if(page === 'restaurante') {
-        document.querySelector('main>.container>div:nth-child(2)').style.backgroundImage = 'url(imgs/bgingredientes.png)'
-        document.querySelector('main>.container>div:nth-child(4)').style.backgroundImage = 'url(imgs/bgfeijoada.png)'
-        document.querySelector('.chefs-container').style.display = "flex";
-    } else {
-        document.querySelector('main>.container>div:nth-child(2)').style.backgroundImage = 'url(imgs/bgtomate.png)'
-        document.querySelector('main>.container>div:nth-child(4)').style.backgroundImage = 'url(imgs/bgfornoalenha.png)'
-        document.querySelector('.chefs-container').style.display = "none";
-    }
+    render(renderContentEven(data), document.querySelector('main>.container>div:nth-child(4)'))
+    contentControl(page)
 }

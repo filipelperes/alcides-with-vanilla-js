@@ -106,11 +106,11 @@ main .container>div {
 
 
 /* Menu */
+
 .menu-content {
     height: auto;
     flex-wrap: wrap;
 }
-
 
 .title-cat {
     padding: 2% 0;
@@ -173,6 +173,7 @@ main .container>div {
 
 
 /* Menu Restaurante */
+
 #restaurante .menu-section:first-child,
 #restaurante .categoria:not(:first-child) .menu-item {
     width: 100%;
@@ -194,7 +195,7 @@ main .container>div {
     flex: 50%;
 }
 
-.categoria:not(:first-child) .menu-item {
+#restaurante .categoria:not(:first-child) .menu-item {
     margin-top: 3%;
 }
 
@@ -221,7 +222,9 @@ main .container>div {
     height: auto;
 }
 
+
 /* Menu Pizzaria */
+
 #pizzaria .menu-section:not(:last-child) {
     width: 50%;
     flex: 1;
@@ -235,12 +238,10 @@ main .container>div {
     top: -350px;
 }
 
-#pizzaria .menu-section:first-child>.menu-section-container:nth-child(2){
-}
-
 #pizzaria .menu-item {
     width: 100%;
 }
+
 
 /* Sobre */
 

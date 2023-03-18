@@ -3,8 +3,7 @@ export const dataRestaurante = () => {
         "title-page": "Alcide's Restaurante e Pizzaria – Desde 1979 é um dos mais tradicionais restaurantes do Guarujá.",
         "nav-menu": ["menu", "sobre", "Chefs"],
         "tel": "(13) 3387-6323",
-        "history": [
-            {
+        "history": [{
                 "title": "História",
                 "desc": "Inaugurado em 1979, o Alcide’s Restaurante é um dos mais tradicionais restaurantes do Guarujá, litoral de São Paulo. Possui um cardápio variado, indo de Peixes & Frutos do Mar, passando por Carnes e Aves, até Massas, o que agrada aos mais seletos e requintados paladares.",
                 "desc2": "Seu ambiente rústico, próprio das cidades litorâneas, aliado ao atendimento exclusivo e personalizado, proporciona aconchego, segurança e descontração. Contudo, o que lhe confere fama, credibilidade e fidelidade de seus clientes, é a qualidade de seus pratos, cada um se compara a iguarias capazes de seduzir todos os sentidos gustativos."
@@ -15,14 +14,18 @@ export const dataRestaurante = () => {
                 "desc2": "Aqui você pode conhecer um pouco das variadas alternativas de alimentação que oferecemos em nosso restaurante."
             },
         ],
+        "contentEven": {
+            "str": "Buffet",
+            "str2": "de feijoada",
+            "str3": "Todos os Sábados",
+        },
         "cardapio": dataMenuRestaurante(),
     }
 }
 
 const dataMenuRestaurante = () => {
     return {
-        "Pratos da casa": [
-            {
+        "Pratos da casa": [{
                 "title": "Camoranga",
                 "desc": "Camarões Rosa cozidos no molho de tomates e temperos especiais. Servido em moranga recheada e coberta com catupiry. Acompanha arroz ao coco. Sugerido p/ 3 pessoas."
             },
@@ -55,8 +58,7 @@ const dataMenuRestaurante = () => {
                 "desc": "Filé de peixe grelhado, coberto c/ lascas de azeitonas verde, champignon e alcaparras. Acompanha batatas coradas e arroz ao alho. Sugerido p/ 3 pessoas."
             },
         ],
-        "Camarões": [
-            {
+        "Camarões": [{
                 "title": "Á Grega",
                 "desc": "Camarões rosa e queijo à milanesa. Acompanha batatas fritas e arroz à grega."
             },
@@ -73,8 +75,7 @@ const dataMenuRestaurante = () => {
                 "desc": "Camarões rosa grelhados com casca. Acompanha batatas fritas e arroz à grega."
             },
         ],
-        "Peixes": [
-            {
+        "Peixes": [{
                 "title": "Filé à Belle Meunière",
                 "desc": "Filé de peixe grelhado cobertos com camarões 7 barbas, champignon e alcaparras. Acompanha batata soutê."
             },
@@ -107,8 +108,7 @@ const dataMenuRestaurante = () => {
                 "desc": ""
             },
         ],
-        "Carnes": [
-            {
+        "Carnes": [{
                 "title": "Mignon Alcide's",
                 "desc": "Filé mignon à milanesa recheado c/ catupiry. Acompanha arroz à grega."
             },
@@ -133,8 +133,7 @@ const dataMenuRestaurante = () => {
                 "desc": "Filé mignon grelhado acompanhado por batatas fritas."
             },
         ],
-        "Frango": [
-            {
+        "Frango": [{
                 "title": "Supremo à Cubana",
                 "desc": "Supremo de frango e banana à milanesa, acompanhado por ervilhas e palmitos na manteiga e batatas fritas."
             },
@@ -151,22 +150,24 @@ export const dataPizzaria = () => {
         "title-page": "Alcide’s Pizzaria",
         "nav-menu": ["menu", "sobre"],
         "tel": "(13) 3355-9885",
-        "history": [
-            {
-                "title": "",
-                "desc": "Inaugurada em 2006, a Alcide’s Pizzaria sempre se destacou pela qualidade de suas pizzas assadas em forno a lenha, pelo atendimento personalizado e pelo ambiente bem decorado e aconchegante.",
-                "desc2": "A adega climatizada oferece mais de 50 rótulos de vinhos especialmente selecionados que se harmonizam perfeitamente com os diversos sabores.",
-                "desc3": "Ambiente familiar e descontraído aliado ao conforto e ao atendimento diferenciado oferece momentos de pura descontração, além da tradição e da qualidade das nossas pizzas são fatores que atraem sempre mais clientes amantes da boa pizza."
-            },
-        ],
+        "history": [{
+            "title": "",
+            "desc": "Inaugurada em 2006, a Alcide’s Pizzaria sempre se destacou pela qualidade de suas pizzas assadas em forno a lenha, pelo atendimento personalizado e pelo ambiente bem decorado e aconchegante.",
+            "desc2": "A adega climatizada oferece mais de 50 rótulos de vinhos especialmente selecionados que se harmonizam perfeitamente com os diversos sabores.",
+            "desc3": "Ambiente familiar e descontraído aliado ao conforto e ao atendimento diferenciado oferece momentos de pura descontração, além da tradição e da qualidade das nossas pizzas são fatores que atraem sempre mais clientes amantes da boa pizza."
+        }, ],
+        "contentEven": {
+            "str": "Preparados",
+            "str2": "em forno a lenha",
+            "str3": "Fica uma delícia!",
+        },
         "cardapio": dataMenuPizzaria(),
     }
 }
 
 const dataMenuPizzaria = () => {
     return {
-        "Entradas": [
-            {
+        "Entradas": [{
                 "title": "Salada Caesar Alcides",
                 "desc": "Pedaços pequenos de frango grelhado, alface americana, lisa, crespa, cebola roxa, tomate cereja, parmesão ralado, palmito em pedaços e croutons. Molho Caesar Alcides."
             },
@@ -199,8 +200,7 @@ const dataMenuPizzaria = () => {
                 "desc": ""
             }
         ],
-        "Pizzas Especiais": [
-            {
+        "Pizzas Especiais": [{
                 "title": "Alemã",
                 "desc": "Molho de tomate temperado, mussarela, um leve toque de gorgonzola, cebolas à moda da casa (cebola assada com condimentos especiais) azeitona e orégano."
             },
@@ -265,8 +265,7 @@ const dataMenuPizzaria = () => {
                 "desc": "Molho de tomate, mussarela de búfala,cogumelos shitake, shimeji e funghi refogados na manteiga e shoyu, orégano e azeitonas."
             },
         ],
-        "Tradicionais": [
-            {
+        "Tradicionais": [{
                 "title": "Alcachofra",
                 "desc": "Molho de tomate temperado, mussarela, coração de alcachofra fatiado, filés de anchova e azeitonas."
             },
