@@ -142,6 +142,7 @@ const dataMenuRestaurante = () => {
                 "desc": "Frango em pedaços frito ao alho e óleo. Acompanha fritas e arroz."
             },
         ],
+        "E mais...": "Entradas, Saladas, Massas, Pratos para as crianças, Porções, Sobremesas, Bebidas, Coquetéis, Caipirinhas e Batidas, Bebidas Quentes e Licores.",
     }
 }
 
@@ -382,5 +383,6 @@ const dataMenuPizzaria = () => {
                 "desc": "Molho de tomate temperado, mussarela, fatias de calabresa pré assadas e orégano."
             }
         ],
+        "E mais...": "Pizzas Doces, Coberturas extras, Sobremesas, Bebidas, Coquetéis, Caipirinhas e Batidas, Bebidas Quentes e Licores.",
     }
 }
