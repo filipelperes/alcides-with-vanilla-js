@@ -14,46 +14,45 @@ const renderSobreTitle = (v) => {
             <span><i class="fa-solid fa-utensils"></i></span>`
 }
 
-const renderSobrePizzaria = ({ desc, desc2, desc3 }) => {
+const renderDescPizzaria = (desc, desc2, desc3) => {
+    return `<p>${ desc }</p>
+            <p>${ desc2 }</p>
+            <p>${ desc3 }</p>`
+}
+
+const renderDescRestaurante = (title, desc, desc2) => {
+    return `<h4>${ title }</h4>
+            <p>${ desc }</p>
+            <p>${ desc2 }</p>`
+}
+
+const renderSobreRestaurante = ({ title, desc, desc2 }) => {
+    return `<div class="section-content flex">
+                <div class="section-content-text">
+                    ${ renderDescRestaurante(title, desc, desc2) }
+                </div>
+                <div class="section-content-img flex">
+                        <figure><img src="imgs/historia1.png" alt=" "></figure>
+                        <figure><img src="imgs/historia2.png" alt=" "></figure>
+                </div>
+            </div>`
+}
+
+const renderSobre = (page, { title, desc, desc2, desc3 }) => {
+    img = bool(page) ? "salao-pizzaria" : "camoranga2"
     return `<div class="section-content flex">
                     <div class="section-content-img flex">
-                        <figure><img src="imgs/salao-pizzaria.png" alt=" "></figure>
+                        <figure><img src="imgs/${ img }.png" alt=" "></figure>
                     </div>
                     <div class="section-content-text">
-                        <p>${ desc }</p>
-                        <p>${ desc2 }</p>
-                        <p>${ desc3 }</p>
+                        ${ bool(page) ? renderDescPizzaria(desc, desc2, desc3)  : renderDescRestaurante(title, desc, desc2) }
                     </div>
                 </div>`
 }
 
-const renderSobreRestaurante = (i, { title, desc, desc2 }) => {
-    return i === 0 ? `<div class="section-content flex">
-                            <div class="section-content-text">
-                                <h4>${ title }</h4>
-                                <p>${ desc }</p>
-                                <p>${ desc2 }</p>
-                            </div>
-                            <div class="section-content-img flex">
-                                    <figure><img src="imgs/historia1.png" alt=" "></figure>
-                                    <figure><img src="imgs/historia2.png" alt=" "></figure>
-                            </div>
-                            </div>` :
-        `<div class="section-content flex">
-                                <div class="section-content-img flex">
-                                    <figure><img src="imgs/camoranga2.png" alt=" "></figure>
-                                </div>
-                                <div class="section-content-text">
-                                    <h4>${ title }</h4>
-                                    <p>${ desc }</p>
-                                    <p>${ desc2 }</p>
-                                </div>
-                            </div>`
-}
-
 const renderSobreContent = (page, { history }) => {
     return history.map((val, i) => {
-        return bool(page) ? renderSobrePizzaria(val) : renderSobreRestaurante(i, val)
+        return !bool(page) & i === 0 ? renderSobreRestaurante(val) : renderSobre(page, val)
     }).join('')
 }
 
