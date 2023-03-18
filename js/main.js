@@ -2,6 +2,7 @@ import { dataRestaurante, dataPizzaria } from './data.js'
 import { renderHeader } from './header.js'
 import { renderCardapio } from './cardapio.js'
 import { render, bool } from './utils.js'
+import { applyImg, applyMargin, display } from './styles.js'
 
 let img, img2, d;
 
@@ -51,8 +52,9 @@ const renderSobreRestaurante = (i, { title, desc, desc2 }) => {
 }
 
 const renderSobreContent = (page, { history }) => {
-    return bool(page) ? history.map(val => { return renderSobrePizzaria(val) }).join('') :
-        history.map((val, i) => { return renderSobreRestaurante(i, val) }).join('')
+    return history.map((val, i) => {
+        return bool(page) ? renderSobrePizzaria(val) : renderSobreRestaurante(i, val)
+    }).join('')
 }
 
 const renderContentEven = ({ contentEven }) => {
@@ -74,22 +76,24 @@ const contentControl = (page) => {
         img = 'bgtomate'
         img2 = 'bgfornoalenha'
         d = 'none'
+        applyMargin('main>.container>div:nth-child(2)', '5%')
     } else {
         img = 'bgingredientes'
         img2 = 'bgfeijoada'
         d = 'flex'
+        applyMargin('main>.container>div:nth-child(2)', '-10%')
     }
 
-    document.querySelector('main>.container>div:nth-child(2)').style.backgroundImage = `url(imgs/${ img }.png)`
-    document.querySelector('main>.container>div:nth-child(4)').style.backgroundImage = `url(imgs/${ img2 }.png)`
-    document.querySelector('.chefs-container').style.display = d
-}
 
+    applyImg(`main>.container>div:nth-child(2)`, img)
+    applyImg(`main>.container>div:nth-child(4)`, img2)
+    display('.chefs-container', d)
+}
 
 export const renderPage = (page) => {
     const data = page === 'restaurante' ? dataRestaurante() : dataPizzaria();
     renderHeader(page, data)
-    render(renderCardapio(data), document.querySelector('.menu-container'))
+    render(renderCardapio(page, data), document.querySelector('.menu-container'))
     render(renderSobreTitle(page), document.querySelector('.sobre-title'))
     render(renderSobreContent(page, data), document.querySelector('.sobre-content'))
     render(renderContentEven(data), document.querySelector('main>.container>div:nth-child(4)'))

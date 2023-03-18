@@ -15,3 +15,14 @@ import { lowercase, toggleClass } from './utils.js'
         toggleClass($(`.menu-logo .menu-logo-${ target }`), 'menu-selected')
     })
 })(jQuery)
+
+document.onkeydown = fkey
+document.onkeypress = fkey
+document.onkeyup = fkey
+
+function fkey(e) {
+    if (e.keyCode == 116) {
+        // e.preventDefault()
+        renderPage(lowercase(document.querySelector('.menu-selected').innerHTML))
+    }
+}

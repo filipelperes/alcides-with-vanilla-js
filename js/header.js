@@ -1,4 +1,5 @@
 import { render, bool } from './utils.js'
+import { applyImg } from './styles.js'
 
 const renderLink = (val) => {
     return `<a>${ val }</a>`
@@ -19,9 +20,9 @@ const renderHeaderContent = (val) => {
 const titlePage = (val) => { document.title = val }
 
 export const renderHeader = (page, { 'title-page': docTitle, 'nav-menu': menuHeader, tel, ...obj }) => {
-    titlePage(docTitle);
-    document.querySelector('div.header').style.backgroundImage = `url(imgs/${ page }.png)`
-    document.querySelector('.phone p').innerHTML = tel;
+    titlePage(docTitle)
+    applyImg('div.header', page)
+    render(tel, document.querySelector('.phone p'))
     render(renderNavMenu(menuHeader), document.querySelector('nav.menu'));
     render(renderHeaderContent(page), document.querySelector('.header-content'));
 }
