@@ -1,5 +1,4 @@
 export const render = (template, elem) => {
-
     // Set rendering element for the component
     if (typeof template === 'function') {
         template.elem = elem
@@ -28,23 +27,19 @@ export const render = (template, elem) => {
 
     // Return the elem for use elsewhere
     return elem
-
 }
 
-export const capitalize = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
+export const capitalize = (str) => { return str.charAt(0).toUpperCase() + str.slice(1); }
 
-export const lowercase = (str) => {
-    return str.charAt(0).toLowerCase() + str.slice(1);
-}
+export const lowercase = (str) => { return str.charAt(0).toLowerCase() + str.slice(1); }
 
-export const addClass = (el, c) => {
-    el.addClass(c)
-}
+export const addClass = (el, c) => { el.addClass(c) }
 
-export const toggleClass = (el, c) => {
-    el.toggleClass(c)
-}
+export const toggleClass = (el, c) => { el.toggleClass(c) }
 
 export const bool = (page) => { return page === 'pizzaria' }
+export const justLettersAndNumber = (str) => { return str.replace(/[^\w]/g, "") }
+
+export const getText = (el) => { return justLettersAndNumber(el.text()) }
+export const getEl = (query) => { return document.querySelector(query) }
+export const setLink = (query, val) => { return document.querySelector(query).href = val }

@@ -1,12 +1,20 @@
-import { render, bool } from './utils.js'
+import { render, bool, setLink } from './utils.js'
 import { applyImg } from './styles.js'
 
+const setLinks = (page) => {
+    if (bool(page)) {
+        setLink('a.gmaps', "https://goo.gl/maps/UWPdqoL6ta32fPXL6")
+    } else {
+        setLink('a.gmaps', "https://goo.gl/maps/3VHTKWpewvyVRHph8")
+    }
+}
+
 const renderLink = (val) => {
-    return `<a>${ val }</a>`
+    return `<a class="${ val }-link">${ val }</a>`
 }
 
 const renderNavMenu = (arr) => {
-    return arr.map(val => {
+    return arr.map((val, i) => {
         return renderLink(val)
     }).join('')
 }
@@ -25,4 +33,5 @@ export const renderHeader = (page, { 'title-page': docTitle, 'nav-menu': menuHea
     render(tel, document.querySelector('.phone p'))
     render(renderNavMenu(menuHeader), document.querySelector('nav.menu'));
     render(renderHeaderContent(page), document.querySelector('.header-content'));
+    setLinks(page)
 }
