@@ -56,13 +56,6 @@ img {
     justify-content: center;
 }
 
-.sticky {
-    position: sticky !important;
-    width: 100%;
-    top: 0;
-    z-index: 2;
-}
-
 .column {
     flex-direction: column;
 }
@@ -107,6 +100,7 @@ img {
     width: 100%;
     justify-content: space-evenly;
     padding: 7px 0;
+    z-index: 99;
 }
 
 .social-item {
@@ -127,11 +121,11 @@ img {
 .social-item p {
     padding-left: 10px;
     color: var(--secondary-color);
-    border-left: 1px solid var(--secondary-color);
 }
 
 .phone i {
     padding-right: 10px;
+    border-right: 1px solid var(--secondary-color);
 }
 
 .social-item i {
@@ -206,10 +200,15 @@ header {
     padding: 20px 0;
 }
 
-.menu-logo a:not(:nth-child(2)):hover,
 .menu-selected {
     color: var(--third-color) !important;
     border-bottom: 7px solid var(--third-color);
+}
+
+.menu-selected2 {
+    color: var(--main-color);
+    border-bottom: 7px solid var(--main-color);
+    border-top: 7px solid var(--main-color);
 }
 
 nav.menu {
@@ -307,4 +306,33 @@ footer .container {
 
 footer .container>* {
     color: var(--fourth-color);
+}
+
+
+/* ICONE MOBILE E STICKY*/
+
+header>.menu-sticky {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background: var(--third-color);
+    cursor: pointer;
+    display: none;
+}
+
+header>.menu-sticky i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    text-shadow: none;
+}
+
+.nav-selected {
+    background: var(--third-color);
+    font-weight: bold;
 }

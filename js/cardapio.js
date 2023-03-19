@@ -55,18 +55,18 @@ const renderMenuSection = (val, arr, page, aux) => {
 export const renderCardapio = (page, { cardapio }) => {
         const { "E mais...": more, ...obj } = cardapio
         return `${ renderMenuTitle }
-            <div id="${ page }" class="menu-content flex">
-                ${ ((ob) => {
-                    let html = ""
-                    let aux = ""
-                    Object.keys(ob).forEach((val, i) => {
-                        bool(page) && i < 2 ? aux += `<div class="menu-section-container">
-                                                            ${ renderCategoria(val, ob[val]) }
-                                                        </div>` 
-                        : html += renderMenuSection(val, ob[val], page, aux)
-                    })
-                    return html
-                })(obj) }
-                ${ renderLastMenuSection(more) }
-            </div>`
+                <div id="${ page }" class="menu-content flex">
+                    ${ ((ob) => {
+                        let html = ""
+                        let aux = ""
+                        Object.keys(ob).forEach((val, i) => {
+                            bool(page) && i < 2 ? aux += `<div class="menu-section-container">
+                                                                ${ renderCategoria(val, ob[val]) }
+                                                            </div>` 
+                            : html += renderMenuSection(val, ob[val], page, aux)
+                        })
+                        return html
+                    })(obj) }
+                    ${ renderLastMenuSection(more) }
+                </div>`
 }

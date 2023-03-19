@@ -1,7 +1,9 @@
 import { renderPage } from './main.js'
-import { addClass } from './utils.js'
+import { addClassList, removeClassList, menuListener } from './utils.js'
 
-(($) => {
-    renderPage('restaurante')
-    addClass($('.menu-logo a:first-child'), 'menu-selected')
-})(jQuery)
+(() => {
+    if (document.querySelector('.menu-selected') === null) addClassList(`.menu-logo-restaurante`, 'menu-selected')
+    renderPage(document.querySelector('.menu-selected').innerHTML.toLowerCase() || 'restaurante')
+})()
+
+window.onload = menuListener

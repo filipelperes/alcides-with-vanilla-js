@@ -1,7 +1,7 @@
 import { dataRestaurante, dataPizzaria } from './data.js'
 import { renderHeader } from './header.js'
 import { renderCardapio } from './cardapio.js'
-import { render, bool } from './utils.js'
+import { render, bool, menuListener } from './utils.js'
 import { applyImg, applyMargin, display } from './styles.js'
 
 let img, img2, d;
@@ -90,11 +90,12 @@ const contentControl = (page) => {
 }
 
 export const renderPage = (page) => {
-    const data = page === 'restaurante' ? dataRestaurante() : dataPizzaria();
+    const data = !bool(page) ? dataRestaurante() : dataPizzaria();
     renderHeader(page, data)
     render(renderCardapio(page, data), document.querySelector('.menu-container'))
     render(renderSobreTitle(page), document.querySelector('.sobre-title'))
     render(renderSobreContent(page, data), document.querySelector('.sobre-content'))
     render(renderContentEven(data), document.querySelector('main>.container>div:nth-child(4)'))
     contentControl(page)
+    menuListener()
 }
