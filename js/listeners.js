@@ -41,6 +41,19 @@ import {
     let boolPhoneText = true
     let boolMSticky = false
 
+    const renderNav = () => {
+        applyCSS($('nav'), cssNav)
+        applyCSS($('nav a'), cssNavLink)
+        applyCSS($('nav a:nth-child(2)'), cssNavLinkSecond)
+        applyCSS($('nav a:not(:last-child)'), cssNavLinkNotLast)
+        applyCSS($('nav'), toggleDisplay(false))
+    }
+
+    const renderMenuLogo = () => {
+        applyCSS($('header'), cssHeader)
+        applyCSS($('.menu-logo>div img'), cssNavImg)
+    }
+
     const applyBgAfterScroll = () => {
         $('.social-container a:nth-child(1)').css('background', arr[0])
         $('.social-container a:nth-child(2)').css('background', arr[1])
@@ -54,18 +67,13 @@ import {
                 applyCSS($('.social-container'), cssSocialContainer)
                 applyCSS($('.social-item:first-child'), cssSocialItemPhone)
                 applyCSS($('.phone i'), cssPhone)
-                applyCSS($('header'), cssHeader)
-                applyCSS($('.menu-logo>div img'), cssNavImg)
+                renderMenuLogo()
                 if (boolPhoneText) {
                     applyCSS($('.phone p'), toggleDisplay(false))
                     boolPhoneText = handleBool(boolPhoneText)
                 }
                 if (boolNav) {
-                    applyCSS($('nav'), cssNav)
-                    applyCSS($('nav a'), cssNavLink)
-                    applyCSS($('nav a:nth-child(2)'), cssNavLinkSecond)
-                    applyCSS($('nav a:not(:last-child)'), cssNavLinkNotLast)
-                    applyCSS($('nav'), toggleDisplay(false))
+                    renderNav()
                     boolNav = handleBool(boolNav)
                 }
                 if (!boolMSticky) {
@@ -186,12 +194,17 @@ import {
         },
         click: (e) => {
             const target = lowercase(e.currentTarget.innerHTML)
+            const b = $(window).scrollTop() > $('header').offset().top
             $(`.${ getClass() }`).removeClass(getClass())
             addClass($(`.menu-logo .menu-logo-${ target }`), getClass())
             removeStyle($(`.menu-logo-${ target === 'pizzaria' ? "restaurante" : "pizzaria" }`))
             applyCSS($(`.menu-logo a`), cssLinkMenuLogo($(window).scrollTop()))
             applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
             renderPage(target)
+            if (b) {
+                renderNav()
+                renderMenuLogo()
+            }
         },
     })
 
