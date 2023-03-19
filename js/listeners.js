@@ -49,10 +49,6 @@ import {
         applyCSS($('nav'), toggleDisplay(false))
     }
 
-    const renderMenuLogo = () => {
-        applyCSS($('header'), cssHeader)
-        applyCSS($('.menu-logo>div img'), cssNavImg)
-    }
 
     const applyBgAfterScroll = () => {
         $('.social-container a:nth-child(1)').css('background', arr[0])
@@ -67,7 +63,8 @@ import {
                 applyCSS($('.social-container'), cssSocialContainer)
                 applyCSS($('.social-item:first-child'), cssSocialItemPhone)
                 applyCSS($('.phone i'), cssPhone)
-                renderMenuLogo()
+                applyCSS($('header'), cssHeader)
+                applyCSS($('.menu-logo>div img'), cssNavImg)
                 if (boolPhoneText) {
                     applyCSS($('.phone p'), toggleDisplay(false))
                     boolPhoneText = handleBool(boolPhoneText)
@@ -201,10 +198,7 @@ import {
             applyCSS($(`.menu-logo a`), cssLinkMenuLogo($(window).scrollTop()))
             applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
             renderPage(target)
-            if (b) {
-                renderNav()
-                renderMenuLogo()
-            }
+            if (b) renderNav()
         },
     })
 
