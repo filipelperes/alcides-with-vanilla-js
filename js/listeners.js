@@ -205,6 +205,8 @@ import {
             if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
         }
     }))
+
+    stickyEffect()
 })(jQuery)
 
 document.onkeydown = fkey
