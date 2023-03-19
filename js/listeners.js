@@ -164,7 +164,7 @@ import {
         slideToggle($('nav'));
         toggleClass(btnIcon, 'fa-xmark')
         document.addEventListener('click', (e) => {
-            const $trigger = btnMenu
+            const $trigger = $('nav')
             if ($trigger !== e.target && !$trigger.has(e.target).length) {
                 $('nav').slideDown();
                 if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
@@ -198,9 +198,12 @@ import {
     //NAV MENU LINK CLICK
     $(document).on('click', 'nav.menu a', ((e) => {
         const target = lowercase(e.currentTarget.className.split('-')[0])
+        const b = $(window).scrollTop() > $('header').offset().top
         $('html, body').animate({ scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }, 2000);
-        slideToggle($('nav'))
-        if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
+        if (b) {
+            slideToggle($('nav'))
+            if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
+        }
     }))
 })(jQuery)
 
