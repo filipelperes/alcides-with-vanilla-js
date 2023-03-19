@@ -64,7 +64,7 @@ export const cssHeader = {
 }
 
 export const cssMenuLogo = {
-    'padding': '2%',
+    'padding': '1% 5%',
     'border': '0 1px 1px 1px solid var(--main-color)',
     'border-bottom-left-radius': '7px',
     'border-bottom-right-radius': '7px',
