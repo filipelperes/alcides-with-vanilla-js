@@ -192,8 +192,6 @@ import {
             applyCSS($(`.menu-logo a`), cssLinkMenuLogo($(window).scrollTop()))
             applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
             renderPage(target)
-                // slideToggle($('nav'))
-                // if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
         },
     })
 
@@ -201,8 +199,8 @@ import {
     $(document).on('click', 'nav.menu a', ((e) => {
         const target = lowercase(e.currentTarget.className.split('-')[0])
         $('html, body').animate({ scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }, 2000);
-        // slideToggle($('nav'))
-        // if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
+        slideToggle($('nav'))
+        if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
     }))
 })(jQuery)
 
