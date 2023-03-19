@@ -36,6 +36,11 @@ import {
 (($) => {
     //STICKY EFFECT
     const arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 ']
+    const handleBool = (bool) => { return !bool }
+    let boolNav = true
+    let boolPhoneText = true
+    let boolMSticky = false
+
     const applyBgAfterScroll = () => {
         $('.social-container a:nth-child(1)').css('background', arr[0])
         $('.social-container a:nth-child(2)').css('background', arr[1])
@@ -51,13 +56,22 @@ import {
                 applyCSS($('.phone i'), cssPhone)
                 applyCSS($('header'), cssHeader)
                 applyCSS($('.menu-logo>div img'), cssNavImg)
-                applyCSS($('nav'), cssNav)
-                applyCSS($('nav a'), cssNavLink)
-                applyCSS($('nav a:nth-child(2)'), cssNavLinkSecond)
-                applyCSS($('nav a:not(:last-child)'), cssNavLinkNotLast)
-                applyCSS($('.phone p'), toggleDisplay(false))
-                applyCSS($('.menu-sticky'), toggleDisplay(true))
-                applyCSS($('nav'), toggleDisplay(false))
+                if (boolPhoneText) {
+                    applyCSS($('.phone p'), toggleDisplay(false))
+                    boolPhoneText = handleBool(boolPhoneText)
+                }
+                if (boolNav) {
+                    applyCSS($('nav'), cssNav)
+                    applyCSS($('nav a'), cssNavLink)
+                    applyCSS($('nav a:nth-child(2)'), cssNavLinkSecond)
+                    applyCSS($('nav a:not(:last-child)'), cssNavLinkNotLast)
+                    applyCSS($('nav'), toggleDisplay(false))
+                    boolNav = handleBool(boolNav)
+                }
+                if (!boolMSticky) {
+                    applyCSS($('.menu-sticky'), toggleDisplay(true))
+                    boolMSticky = handleBool(boolMSticky)
+                }
                 addClassList('.menu-selected', 'menu-selected2')
                 removeClassList('.menu-selected', 'menu-selected')
                 applyBgAfterScroll()
@@ -66,17 +80,26 @@ import {
                 removeStyle($('.social-container a'))
                 removeStyle($('.social-container a i'))
                 removeStyle($('.social-item:first-child'))
-                removeStyle($('.phone p'))
                 removeStyle($('.phone i'))
                 removeStyle($('.menu-logo'))
                 removeStyle($('.menu-logo a'))
                 removeStyle($('.menu-logo>div img'))
-                removeStyle($('nav'))
+                if (!boolNav) {
+                    removeStyle($('nav'))
+                    applyCSS($('nav'), { 'display': 'flex' })
+                    boolNav = handleBool(boolNav)
+                }
+                if (boolMSticky) {
+                    applyCSS($('.menu-sticky'), toggleDisplay(false))
+                    boolMSticky = handleBool(boolMSticky)
+                }
+                if (!boolPhoneText) {
+                    removeStyle($('.phone p'))
+                    boolPhoneText = handleBool(boolPhoneText)
+                }
                 removeStyle($('nav a'))
                 removeStyle($('nav a:nth-child(2)'))
                 removeStyle($('nav a:not(:last-child)'))
-                applyCSS($('nav'), { 'display': 'flex' })
-                applyCSS($('.menu-sticky'), toggleDisplay(false))
                 addClassList('.menu-selected2', 'menu-selected')
                 removeClassList('.menu-selected2', 'menu-selected2')
             }
@@ -124,11 +147,11 @@ import {
 
     //BREAKPOINTS
     if (screen > 767) {
-        $('a.phone').click((e) => {
+        $('a.phone').on('click', ((e) => {
             navigator.clipboard.writeText(getText($('.phone')));
             customAlert('Telefone copiado para a area de transferência!');
             $('button.active').click(() => { alertFadeOut() })
-        })
+        }))
     } else setLink('a.phone', `tel:${ getText($('.phone')) }`)
 
     const getMenuDisplay = () => { $('nav').css('display') }
@@ -136,18 +159,18 @@ import {
     //MENU STICKY
     const btnMenu = $('.menu-sticky')
     const btnIcon = $('.menu-sticky i')
-    btnMenu.click((e) => {
+    btnMenu.on('click', ((e) => {
         e.stopPropagation();
         slideToggle($('nav'));
         toggleClass(btnIcon, 'fa-xmark')
         document.addEventListener('click', (e) => {
             const $trigger = btnMenu
             if ($trigger !== e.target && !$trigger.has(e.target).length) {
-                slideToggle($('nav'));
+                $('nav').slideDown();
                 if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
             }
         })
-    })
+    }))
 
     //MENU LOGO LINK CLICK    
     const menuLogoLink = $('.menu-logo a');
@@ -169,8 +192,8 @@ import {
             applyCSS($(`.menu-logo a`), cssLinkMenuLogo($(window).scrollTop()))
             applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
             renderPage(target)
-            slideToggle($('nav'))
-            if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
+                // slideToggle($('nav'))
+                // if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
         },
     })
 
@@ -178,8 +201,8 @@ import {
     $(document).on('click', 'nav.menu a', ((e) => {
         const target = lowercase(e.currentTarget.className.split('-')[0])
         $('html, body').animate({ scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }, 2000);
-        slideToggle($('nav'))
-        if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
+        // slideToggle($('nav'))
+        // if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
     }))
 })(jQuery)
 

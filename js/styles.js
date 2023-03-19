@@ -73,7 +73,7 @@ export const cssMenuLogo = {
     'text-shadow': 'none',
 }
 
-export const cssNavImg = { 'max-width': '100px' }
+export const cssNavImg = { 'max-width': '127px' }
 
 export const cssNav = {
     'max-width': '250px',
@@ -82,7 +82,7 @@ export const cssNav = {
     'right': '30px',
     'margin': '0',
     'flex-direction': 'column',
-    'border': '1px solid var(--footer - border)',
+    'border': '1px solid var(--footer-border)',
     'text-shadow': 'none',
     'z-index': '999',
     'background': 'var(--secondary-border)',
