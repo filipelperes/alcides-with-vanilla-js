@@ -128,6 +128,10 @@ main .container>div {
     background: var(--third-color);
 }
 
+.title-cat>div i {
+    display: none;
+}
+
 .menu-item p.menu-item-title {
     text-transform: uppercase;
     font-weight: bold;
@@ -218,7 +222,7 @@ main .container>div {
 
 #restaurante .menu-section:last-child {
     position: relative;
-    top: -250px;
+    top: -270px;
     height: auto;
 }
 
@@ -289,6 +293,7 @@ main .container>div {
 .chef-card {
     width: 47%;
     border: 3px solid var(--main-box-shadow);
+    text-align: center;
 }
 
 .chef-card p {

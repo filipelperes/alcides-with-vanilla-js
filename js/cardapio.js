@@ -10,7 +10,10 @@ const renderMenuTitle = `<div class="menu-title title flex column">
 
 const renderTitleCat = (title) => {
     return `<div class="title-cat flex column">
-                <h4>${ title }</h4>
+                <div class="flex">
+                    <h4>${ title }</h4>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
                 <span></span>
             </div>`
 }

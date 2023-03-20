@@ -1,6 +1,7 @@
-import { renderPage } from './main.js'
+import { renderPage, contentControl } from './main.js'
 import {
     dislpayJ,
+    applyMargin,
     toggleDisplay,
     removeStyle,
     cssSocialContainer,
@@ -86,8 +87,8 @@ import {
                 applyCSS($('.phone i'), cssPhone)
                 applyCSS($('header'), cssHeader)
                 applyCSS($('.menu-logo'), cssMenuLogo())
-                applyCSS($('.menu-logo>div img'), cssNavImg)
-                applyCSS($('.header-content'), cssHeaderContent)
+                applyCSS($('.menu-logo>div img'), cssNavImg())
+                applyCSS($('.header-content'), cssHeaderContent())
                 if (!boolButtonSocialContainer) {
                     applyCSS($('.button-social-container'), toggleDisplay(true))
                     boolButtonSocialContainer = handleBool(boolButtonSocialContainer)
@@ -143,6 +144,8 @@ import {
                 if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
             }
             if ($(window).scrollTop() < 72) removeStyle($('header'))
+            if ($(window).width() < 500 && $(window).scrollTop() > 70) applyCSS($('.menu-logo>div'), toggleDisplay(false))
+            else applyCSS($('.menu-logo>div'), toggleDisplay(true))
         }
         //FIM STICKY EFFECT
 
@@ -172,7 +175,6 @@ import {
     //WINDOW EFFECTS
     $(window).scroll(stickyEffect)
     window.onresize = (e) => screen = $(window).width()
-
 
     //BREAKPOINTS
     if (screen > 767) {
@@ -242,4 +244,4 @@ document.onkeypress = fkey
 document.onkeyup = fkey
 window.onscroll = menuListener
 window.onresize = menuListener
-window.onresize = menuListener
+window.onresize = contentControl

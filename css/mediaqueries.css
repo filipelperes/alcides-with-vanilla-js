@@ -1,28 +1,120 @@
+@media screen and (max-width: 1200px) {
+    #restaurante .menu-section:last-child {
+        top: -300px;
+    }
+}
+
 @media screen and (max-width: 768px) {
-    .header nav {
-        max-width: 250px;
-        position: fixed;
-        bottom: 127px;
-        right: 30px;
-        margin: 0;
-        flex-direction: column;
-        border: 1px solid var(--footer-border);
-        text-shadow: none;
-        z-index: 999;
-        background: var(--secondary-border);
+    .container {
+        padding: 0 5%;
+    }
+    #restaurante .categoria:nth-child(2) {
+        top: -130px;
+    }
+    #restaurante .categoria:nth-child(4) {
+        top: -230px;
+    }
+    #restaurante .menu-section:last-child {
+        top: -230px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .sobre-container .section-content-img {
         display: none;
     }
-    nav a {
-        padding: 5% 0;
+    .section-content-text {
         width: 100%;
-        font-size: 1.57rem;
-        color: var(--main-color) !important;
     }
-    nav a:nth-child(2) {
-        border-right: 0;
-        border-left: 0;
+    .sobre-container .section-content:first-child .section-content-text,
+    .sobre-container .section-content:first-child .section-content-img figure:first-child {
+        margin-right: 0;
     }
-    nav a:not(:last-child) {
-        border-bottom: 1px solid var(--footer-border);
+    .sobre-container .section-content:last-child .section-content-text {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .menu-item {
+        padding: 2% 0;
+    }
+    .menu-logo img {
+        max-width: 100px;
+        margin: 0 27px;
+    }
+    #restaurante .categoria:nth-child(2),
+    #restaurante .categoria:nth-child(4),
+    #restaurante .categoria:nth-child(5),
+    #restaurante .menu-section:last-child {
+        top: 0;
+    }
+    #restaurante .categoria:not(:first-child) .menu-item {
+        margin-top: 0;
+    }
+    #restaurante .menu-section:first-child,
+    #pizzaria .menu-section:first-child>.menu-section-container:nth-child(1) {
+        margin-bottom: 0;
+    }
+    #restaurante .menu-section:first-child>.menu-item-container .menu-item,
+    #pizzaria .menu-section:not(:last-child) {
+        width: 100%;
+    }
+    #restaurante .menu-section:first-child>.menu-item-container,
+    .menu-content,
+    .menu-section:last-child {
+        flex-direction: column;
+    }
+    .menu-section {
+        margin: 5% 0;
+    }
+    .menu-section-container {
+        margin-top: 5%;
+    }
+    .menu-section:last-child>p:last-child {
+        font-weight: bold;
+        font-size: 1.17rem;
+    }
+    .content-even>.overlay>div {
+        padding: 0 5%;
+    }
+    .title-cat {
+        border-radius: 7px;
+        border: 1px solid var(--third-color);
+        padding: 2% 5%;
+        margin: 2% 0;
+    }
+    .title-cat>span {
+        display: none;
+    }
+    .title-cat>div {
+        width: 100%;
+    }
+    .title-cat>div i {
+        display: block;
+        width: auto;
+    }
+    .title-cat>div h4 {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .menu-logo {
+        padding: 5%;
+    }
+    .menu-logo img {
+        position: absolute;
+        top: 250px;
+        left: 50%;
+        transform: translateX(-65%);
+        max-width: 150px;
+    }
+    .menu-logo a {
+        margin: 0 3%;
+    }
+    .header-content {
+        top: 170px;
     }
 }

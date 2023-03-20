@@ -34,7 +34,6 @@ export const cssLinkMenuLogo = () => {
 export const cssMenuLogo = () => {
     const bg = isMain() ? 'footer' : 'secondary'
     return {
-        'padding': '1% 5%',
         'border': '0 1px 1px 1px solid var(--main-color)',
         'border-bottom-left-radius': '7px',
         'border-bottom-right-radius': '7px',
@@ -60,9 +59,15 @@ export const cssButtonSocialContainer = () => {
     return { 'background': `var(--${ window.scrollY > 270 ? 'footer' : 'secondary' }-border)`, }
 }
 
-export const cssHeaderContent = {
-    'position': 'relative',
-    'top': '55%',
+export const cssNavImg = () => {
+    return { 'max-width': `${ window.innerWidth < 551 ? '70px' : '127px'}` }
+}
+
+export const cssHeaderContent = () => {
+    return {
+        'position': 'relative',
+        'top': `${ window.innerWidth > 500 ? '55%' : '40%' }`,
+    }
 }
 
 export const cssSocialItemPhone = {
@@ -110,6 +115,9 @@ export const cssNavLinkSecond = {
     'border-right': '0',
     'border-left': '0',
 }
+export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-border)', }
+
+export const cssDisplayFlex = { 'display': 'flex', }
 
 export const animateSocialContainer = (width) => {
     return { left: width }
@@ -122,11 +130,6 @@ export const animateSocialContainerBack = (width) => {
 export const animateNavMenu = (target) => {
     return { scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }
 }
-
-export const cssNavImg = { 'max-width': '127px' }
-export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-border)', }
-
-export const cssDisplayFlex = { 'display': 'flex', }
 
 //VANILLA JS
 export const applyImg = (query, val) => { document.querySelector(query).style.backgroundImage = `url(imgs/${ val }.png)` }

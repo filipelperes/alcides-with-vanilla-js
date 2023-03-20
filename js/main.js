@@ -6,6 +6,8 @@ import { applyImg, applyMargin, display } from './styles.js'
 
 let img, img2, d;
 
+const getWindowWidth = () => { return window.innerWidth }
+
 const renderSobreTitle = (v) => {
     return `<h3>
                 <span>Sobre o</span>
@@ -52,7 +54,7 @@ const renderSobre = (page, { title, desc, desc2, desc3 }) => {
 
 const renderSobreContent = (page, { history }) => {
     return history.map((val, i) => {
-        return !bool(page) & i === 0 ? renderSobreRestaurante(val) : renderSobre(page, val)
+        return !bool(page) && i === 0 ? renderSobreRestaurante(val) : renderSobre(page, val)
     }).join('')
 }
 
@@ -70,17 +72,18 @@ const renderContentEven = ({ contentEven }) => {
             </div>`
 }
 
-const contentControl = (page) => {
+export const contentControl = (page) => {
     if (bool(page)) {
         img = 'bgtomate'
         img2 = 'bgfornoalenha'
         d = 'none'
-        applyMargin('main>.container>div:nth-child(2)', '5%')
+        applyMargin('main>.container>div:nth-child(2)', `5%`)
     } else {
         img = 'bgingredientes'
         img2 = 'bgfeijoada'
         d = 'flex'
-        applyMargin('main>.container>div:nth-child(2)', '-10%')
+        applyMargin('main>.container>div:nth-child(2)', `${ (getWindowWidth() <= 550) ? '0' : (getWindowWidth() <= 850) ? '-30%' : (getWindowWidth() <= 900) ? '-29%' : (getWindowWidth() <= 1000) ? '-27%' : (getWindowWidth() < 1200) ? '-23%' : '-17%' }`)
+        applyMargin('.section-content:nth-child(2)', `${  (getWindowWidth() <= 700) ? '5%' : '0' }`)
     }
 
 
