@@ -10,6 +10,7 @@
         text-shadow: none;
         z-index: 999;
         background: var(--secondary-border);
+        display: none;
     }
     nav a {
         padding: 5% 0;

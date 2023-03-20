@@ -126,6 +126,7 @@ import {
                 removeStyle($('.header-content'))
                 addClassList('.menu-selected2', 'menu-selected')
                 removeClassList('.menu-selected2', 'menu-selected2')
+                if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
             }
             if ($(window).scrollTop() < 72) removeStyle($('header'))
             if ($(window).scrollTop() >= $('header').offset().top && $(window).scrollTop() < $('main').offset().top) menuLogoSticky()
