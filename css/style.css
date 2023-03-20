@@ -311,19 +311,26 @@ footer .container>* {
 
 /* ICONE MOBILE E STICKY*/
 
-header>.menu-sticky {
+header>.menu-sticky,
+.button-social-container {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    background: var(--third-color);
+    width: 50px;
+    height: 50px;
     cursor: pointer;
+    border-radius: 50%;
+    background: var(--third-color);
     display: none;
 }
 
-header>.menu-sticky i {
+header>.menu-sticky {
+    width: 70px;
+    height: 70px;
+    bottom: 30px;
+    right: 30px;
+}
+
+header>.menu-sticky i,
+.button-social-container i {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -336,3 +343,13 @@ header>.menu-sticky i {
     background: var(--third-color);
     font-weight: bold;
 }
+
+
+/* ICONE SOCIAL STICKY */
+
+.button-social-container {
+    top: 50%;
+    left: 11px;
+}
+
+.button-social-container:hover {}

@@ -25,7 +25,7 @@ export const cssHoverMenuLogo = (classe) => {
 }
 
 export const cssLinkMenuLogo = () => {
-    const color = isStickyBeforeMain() ? 'fourth-color' : isMain() ? 'secondary-border' : 'secondary'
+    const color = isStickyBeforeMain() ? 'fourth-color' : isMain() ? 'secondary-border' : 'secondary-color'
     return {
         'color': `var(--${ color })`
     }
@@ -44,19 +44,25 @@ export const cssMenuLogo = () => {
     }
 }
 
+export const cssSocialContainer = (width) => {
+    return {
+        'position': 'fixed',
+        'top': '0',
+        'left': `-${ parseInt(width) * 2 }px`,
+        'width': 'auto',
+        'height': '100vh',
+        'flex-direction': 'column',
+        'margin-left': '2%',
+    }
+}
+
+export const cssButtonSocialContainer = () => {
+    return { 'background': `var(--${ window.scrollY > 270 ? 'footer' : 'secondary' }-border)`, }
+}
+
 export const cssHeaderContent = {
     'position': 'relative',
     'top': '55%',
-}
-
-export const cssSocialContainer = {
-    'position': 'fixed',
-    'top': '0',
-    'left': '0',
-    'width': 'auto',
-    'height': '100vh',
-    'flex-direction': 'column',
-    'margin-left': '2%',
 }
 
 export const cssSocialItemPhone = {
@@ -103,6 +109,18 @@ export const cssNavLink = {
 export const cssNavLinkSecond = {
     'border-right': '0',
     'border-left': '0',
+}
+
+export const animateSocialContainer = (width) => {
+    return { left: width }
+}
+
+export const animateSocialContainerBack = (width) => {
+    return { left: `-${ parseInt(width) * 2 }` }
+}
+
+export const animateNavMenu = (target) => {
+    return { scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }
 }
 
 export const cssNavImg = { 'max-width': '127px' }
