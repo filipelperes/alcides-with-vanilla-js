@@ -1,7 +1,5 @@
 //JQUERY
-export const dislpayJ = (el, v) => {
-    el.css('display', v)
-}
+export const dislpayJ = (el, v) => { el.css('display', v) }
 
 export const toggleDisplay = (bool) => {
     return {
@@ -9,12 +7,13 @@ export const toggleDisplay = (bool) => {
     }
 }
 
-export const removeStyle = (el) => {
-    el.removeAttr('style')
-}
+export const removeStyle = (el) => { el.removeAttr('style') }
+
+const isMain = () => { return window.scrollY > document.querySelector('main').offsetTop }
+const isStickyBeforeMain = () => { return window.scrollY > 70 && window.scrollY < document.querySelector('main').offsetTop }
 
 export const cssHoverMenuLogo = (classe) => {
-    const color = window.scrollY > document.querySelector('main').offsetTop ? 'secondary' : 'main'
+    const color = isMain() ? 'secondary' : 'main'
     return classe === 'menu-selected2' ? {
         'color': `var(--${ color }-color)`,
         'border-bottom': `7px solid var(--${ color }-color)`,
@@ -25,11 +24,29 @@ export const cssHoverMenuLogo = (classe) => {
     }
 }
 
-export const cssLinkMenuLogo = (h) => {
-    const color = h > 70 && h < document.querySelector('main').offsetTop ? 'fourth-color' : h > document.querySelector('main').offsetTop ? 'secondary-border' : 'secondary'
+export const cssLinkMenuLogo = () => {
+    const color = isStickyBeforeMain() ? 'fourth-color' : isMain() ? 'secondary-border' : 'secondary'
     return {
         'color': `var(--${ color })`
     }
+}
+
+export const cssMenuLogo = () => {
+    const bg = isMain() ? 'footer' : 'secondary'
+    return {
+        'padding': '1% 5%',
+        'border': '0 1px 1px 1px solid var(--main-color)',
+        'border-bottom-left-radius': '7px',
+        'border-bottom-right-radius': '7px',
+        'box-shadow': '0px 2px 2px var(--main-box-shadow)',
+        'background': `var(--${ bg }-border)`,
+        'text-shadow': 'none',
+    }
+}
+
+export const cssHeaderContent = {
+    'position': 'relative',
+    'top': '55%',
 }
 
 export const cssSocialContainer = {
@@ -63,18 +80,6 @@ export const cssHeader = {
     'z-index': '999',
 }
 
-export const cssMenuLogo = {
-    'padding': '1% 5%',
-    'border': '0 1px 1px 1px solid var(--main-color)',
-    'border-bottom-left-radius': '7px',
-    'border-bottom-right-radius': '7px',
-    'box-shadow': '0px 2px 2px var(--main-box-shadow)',
-    'background': 'var(--secondary-border)',
-    'text-shadow': 'none',
-}
-
-export const cssNavImg = { 'max-width': '127px' }
-
 export const cssNav = {
     'max-width': '250px',
     'position': 'fixed',
@@ -99,9 +104,11 @@ export const cssNavLinkSecond = {
     'border-right': '0',
     'border-left': '0',
 }
-export const cssNavLinkNotLast = {
-    'border-bottom': '1px solid var(--footer-border)',
-}
+
+export const cssNavImg = { 'max-width': '127px' }
+export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-border)', }
+
+export const cssDisplayFlex = { 'display': 'flex', }
 
 //VANILLA JS
 export const applyImg = (query, val) => { document.querySelector(query).style.backgroundImage = `url(imgs/${ val }.png)` }

@@ -14,7 +14,9 @@ import {
     cssNav,
     cssNavLink,
     cssNavLinkSecond,
-    cssNavLinkNotLast
+    cssNavLinkNotLast,
+    cssDisplayFlex,
+    cssHeaderContent
 } from './styles.js'
 import {
     lowercase,
@@ -41,12 +43,26 @@ import {
     let boolPhoneText = true
     let boolMSticky = false
 
-    const renderNav = () => {
+    const hideNavSticky = () => {
+        applyCSS($('nav'), toggleDisplay(false))
+        if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
+    }
+
+    const navSticky = () => {
         applyCSS($('nav'), cssNav)
         applyCSS($('nav a'), cssNavLink)
         applyCSS($('nav a:nth-child(2)'), cssNavLinkSecond)
         applyCSS($('nav a:not(:last-child)'), cssNavLinkNotLast)
-        applyCSS($('nav'), toggleDisplay(false))
+    }
+
+    const renderHoverInClass = () => {
+        applyCSS($('.menu-logo a '), cssLinkMenuLogo())
+        applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
+    }
+
+    const menuLogoSticky = () => {
+        applyCSS($('.menu-logo'), cssMenuLogo())
+        renderHoverInClass()
     }
 
 
@@ -65,12 +81,14 @@ import {
                 applyCSS($('.phone i'), cssPhone)
                 applyCSS($('header'), cssHeader)
                 applyCSS($('.menu-logo>div img'), cssNavImg)
+                applyCSS($('.header-content'), cssHeaderContent)
                 if (boolPhoneText) {
                     applyCSS($('.phone p'), toggleDisplay(false))
                     boolPhoneText = handleBool(boolPhoneText)
                 }
                 if (boolNav) {
-                    renderNav()
+                    navSticky()
+                    applyCSS($('nav'), toggleDisplay(false))
                     boolNav = handleBool(boolNav)
                 }
                 if (!boolMSticky) {
@@ -91,7 +109,7 @@ import {
                 removeStyle($('.menu-logo>div img'))
                 if (!boolNav) {
                     removeStyle($('nav'))
-                    applyCSS($('nav'), { 'display': 'flex' })
+                    applyCSS($('nav'), cssDisplayFlex)
                     boolNav = handleBool(boolNav)
                 }
                 if (boolMSticky) {
@@ -105,20 +123,13 @@ import {
                 removeStyle($('nav a'))
                 removeStyle($('nav a:nth-child(2)'))
                 removeStyle($('nav a:not(:last-child)'))
+                removeStyle($('.header-content'))
                 addClassList('.menu-selected2', 'menu-selected')
                 removeClassList('.menu-selected2', 'menu-selected2')
             }
             if ($(window).scrollTop() < 72) removeStyle($('header'))
-            if ($(window).scrollTop() >= $('header').offset().top && $(window).scrollTop() < $('main').offset().top) {
-                applyCSS($('.menu-logo'), cssMenuLogo)
-                applyCSS($('.menu-logo a'), cssLinkMenuLogo($(window).scrollTop()))
-                applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
-            }
-            if ($(window).scrollTop() > $('main').offset().top) {
-                applyCSS($('.menu-logo'), { 'background': 'var(--footer-border)' })
-                applyCSS($('.menu-logo a '), cssLinkMenuLogo($(window).scrollTop()))
-                applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
-            }
+            if ($(window).scrollTop() >= $('header').offset().top && $(window).scrollTop() < $('main').offset().top) menuLogoSticky()
+            if ($(window).scrollTop() > $('main').offset().top) menuLogoSticky()
         }
         //FIM STICKY EFFECT
 
@@ -159,7 +170,7 @@ import {
         }))
     } else setLink('a.phone', `tel:${ getText($('.phone')) }`)
 
-    const getMenuDisplay = () => { $('nav').css('display') }
+    const getNavDisplay = () => { return $('nav').css('display') }
 
     //MENU STICKY
     const btnMenu = $('.menu-sticky')
@@ -168,13 +179,7 @@ import {
         e.stopPropagation();
         slideToggle($('nav'));
         toggleClass(btnIcon, 'fa-xmark')
-        document.addEventListener('click', (e) => {
-            const $trigger = $('nav')
-            if ($trigger !== e.target && !$trigger.has(e.target).length) {
-                $('nav').slideDown();
-                if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
-            }
-        })
+        document.addEventListener('click', (e) => { if ($('nav') !== e.target && !$('nav').has(e.target).length) hideNavSticky() })
     }))
 
     //MENU LOGO LINK CLICK    
@@ -187,30 +192,24 @@ import {
         mouseleave: (e) => {
             const target = e.currentTarget.className.split('-')
             removeStyle($(`.menu-logo-${ target[target.length - 1] }`))
-            applyCSS($(`.menu-logo-${ target[target.length - 1] }`), cssLinkMenuLogo($(window).scrollTop()))
+            applyCSS($(`.menu-logo-${ target[target.length - 1] }`), cssLinkMenuLogo())
         },
         click: (e) => {
             const target = lowercase(e.currentTarget.innerHTML)
-            const b = $(window).scrollTop() > $('header').offset().top
             $(`.${ getClass() }`).removeClass(getClass())
             addClass($(`.menu-logo .menu-logo-${ target }`), getClass())
             removeStyle($(`.menu-logo-${ target === 'pizzaria' ? "restaurante" : "pizzaria" }`))
-            applyCSS($(`.menu-logo a`), cssLinkMenuLogo($(window).scrollTop()))
-            applyCSS($(`.${ getClass() }`), cssHoverMenuLogo(getClass()))
+            renderHoverInClass()
             renderPage(target)
-            if (b) renderNav()
+            navSticky()
         },
     })
 
     //NAV MENU LINK CLICK
     $(document).on('click', 'nav.menu a', ((e) => {
         const target = lowercase(e.currentTarget.className.split('-')[0])
-        const b = $(window).scrollTop() > $('header').offset().top
         $('html, body').animate({ scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }, 2000);
-        if (b) {
-            slideToggle($('nav'))
-            if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
-        }
+        if ($(window).scrollTop() > 70) hideNavSticky()
     }))
 
     stickyEffect()

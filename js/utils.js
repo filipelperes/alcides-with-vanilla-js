@@ -49,8 +49,10 @@ export const getClass = () => { return window.scrollY > 70 ? 'menu-selected2' : 
 //VANILLA JS
 export const getEl = (query) => { return document.querySelector(query) }
 export const setLink = (query, val) => { return document.querySelector(query).href = val }
-export const addClassList = (query, c) => { document.querySelector(query) !== null ? document.querySelector(query).classList.add(c) : false }
-export const removeClassList = (query, c) => { document.querySelector(query) !== null ? document.querySelector(query).classList.remove(c) : false }
+
+const notNull = (query) => { return document.querySelector(query) !== null }
+export const addClassList = (query, c) => { notNull(query) ? document.querySelector(query).classList.add(c) : false }
+export const removeClassList = (query, c) => { notNull(query) ? document.querySelector(query).classList.remove(c) : false }
 
 //F5 FUNCTION
 export const fkey = (e) => {
@@ -79,9 +81,8 @@ const controlNavPizzaria = (isMenu, isSobre) => {
     else removeClassList('.nav-selected', 'nav-selected')
 }
 
-export const menuListener = () => {
+export const menuListener = (page = notNull(`.${ getClass() }`) ? document.querySelector(`.${ getClass() }`).innerHTML.toLowerCase() : false) => {
     let isMenu, isSobre, isChef
-    const page = lowercase(document.querySelector(`.${ getClass() }`).innerHTML || '')
     isMenu = getWindowHeight() > document.querySelector('.menu-container').offsetTop && getWindowHeight() < document.querySelector('.menu-container+div').offsetTop
     if (!bool(page)) {
         isSobre = getWindowHeight() > document.querySelector('.sobre-container').offsetTop && getWindowHeight() < document.querySelector('.sobre-container+div').offsetTop
