@@ -1,4 +1,4 @@
-import { bool } from './utils.js'
+import { bool, fixTitle } from './utils.js'
 
 const renderMenuTitle = `<div class="menu-title title flex column">
                             <h3>
@@ -9,10 +9,10 @@ const renderMenuTitle = `<div class="menu-title title flex column">
                         </div>`
 
 const renderTitleCat = (title) => {
-    return `<div class="title-cat flex column">
+    return `<div class="title-cat flex column trigger-${ title }">
                 <div class="flex">
-                    <h4>${ title }</h4>
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <h4>${ fixTitle(title) }</h4>
+                    <i class="fa-solid fa-chevron-up"></i>
                 </div>
                 <span></span>
             </div>`
@@ -26,9 +26,9 @@ const renderMenuItem = ({ title, desc }) => {
 }
 
 const renderCategoria = (title, arr) => {
-    const bool = title === "Pratos da casa"
+    const bool = title === "pratos-da-casa"
     return `${ renderTitleCat(title) }
-            <div class="menu-item-container flex ${ bool ? "" : "column" }">
+            <div class="menu-item-container flex ${ bool ? "" : "column" } container-${ title }">
                 ${ arr.map(val => {
                     return renderMenuItem(val)
                 }).join("") }

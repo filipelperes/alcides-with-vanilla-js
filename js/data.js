@@ -25,7 +25,7 @@ export const dataRestaurante = () => {
 
 const dataMenuRestaurante = () => {
     return {
-        "Pratos da casa": [{
+        "pratos-da-casa": [{
                 "title": "Camoranga",
                 "desc": "Camarões Rosa cozidos no molho de tomates e temperos especiais. Servido em moranga recheada e coberta com catupiry. Acompanha arroz ao coco. Sugerido p/ 3 pessoas."
             },
@@ -58,7 +58,7 @@ const dataMenuRestaurante = () => {
                 "desc": "Filé de peixe grelhado, coberto c/ lascas de azeitonas verde, champignon e alcaparras. Acompanha batatas coradas e arroz ao alho. Sugerido p/ 3 pessoas."
             },
         ],
-        "Camarões": [{
+        "camaroes": [{
                 "title": "Á Grega",
                 "desc": "Camarões rosa e queijo à milanesa. Acompanha batatas fritas e arroz à grega."
             },
@@ -75,7 +75,7 @@ const dataMenuRestaurante = () => {
                 "desc": "Camarões rosa grelhados com casca. Acompanha batatas fritas e arroz à grega."
             },
         ],
-        "Peixes": [{
+        "peixes": [{
                 "title": "Filé à Belle Meunière",
                 "desc": "Filé de peixe grelhado cobertos com camarões 7 barbas, champignon e alcaparras. Acompanha batata soutê."
             },
@@ -108,7 +108,7 @@ const dataMenuRestaurante = () => {
                 "desc": ""
             },
         ],
-        "Carnes": [{
+        "carnes": [{
                 "title": "Mignon Alcide's",
                 "desc": "Filé mignon à milanesa recheado c/ catupiry. Acompanha arroz à grega."
             },
@@ -133,7 +133,7 @@ const dataMenuRestaurante = () => {
                 "desc": "Filé mignon grelhado acompanhado por batatas fritas."
             },
         ],
-        "Frango": [{
+        "frango": [{
                 "title": "Supremo à Cubana",
                 "desc": "Supremo de frango e banana à milanesa, acompanhado por ervilhas e palmitos na manteiga e batatas fritas."
             },
@@ -168,7 +168,7 @@ export const dataPizzaria = () => {
 
 const dataMenuPizzaria = () => {
     return {
-        "Entradas": [{
+        "entradas": [{
                 "title": "Salada Caesar Alcides",
                 "desc": "Pedaços pequenos de frango grelhado, alface americana, lisa, crespa, cebola roxa, tomate cereja, parmesão ralado, palmito em pedaços e croutons. Molho Caesar Alcides."
             },
@@ -201,7 +201,7 @@ const dataMenuPizzaria = () => {
                 "desc": ""
             }
         ],
-        "Pizzas Especiais": [{
+        "pizzas-especiais": [{
                 "title": "Alemã",
                 "desc": "Molho de tomate temperado, mussarela, um leve toque de gorgonzola, cebolas à moda da casa (cebola assada com condimentos especiais) azeitona e orégano."
             },
@@ -266,7 +266,7 @@ const dataMenuPizzaria = () => {
                 "desc": "Molho de tomate, mussarela de búfala,cogumelos shitake, shimeji e funghi refogados na manteiga e shoyu, orégano e azeitonas."
             },
         ],
-        "Tradicionais": [{
+        "pizzas-tradicionais": [{
                 "title": "Alcachofra",
                 "desc": "Molho de tomate temperado, mussarela, coração de alcachofra fatiado, filés de anchova e azeitonas."
             },

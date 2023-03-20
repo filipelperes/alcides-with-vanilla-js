@@ -36,6 +36,11 @@
 }
 
 @media screen and (max-width: 550px) {
+    .menu-section,
+    .menu-section-container,
+    .title-cat {
+        width: 100%;
+    }
     .menu-item {
         padding: 2% 0;
     }
@@ -47,7 +52,7 @@
     #restaurante .categoria:nth-child(4),
     #restaurante .categoria:nth-child(5),
     #restaurante .menu-section:last-child {
-        top: 0;
+        top: 0px;
     }
     #restaurante .categoria:not(:first-child) .menu-item {
         margin-top: 0;
@@ -65,11 +70,17 @@
     .menu-section:last-child {
         flex-direction: column;
     }
+    #pizzaria>div:nth-child(2) {
+        order: -1;
+    }
+    #pizzaria>.menu-section:first-child .menu-section-container:last-child {
+        margin-top: 13%;
+    }
+    #restaurante>.menu-section:nth-child(2) {
+        margin-top: 10%;
+    }
     .menu-section {
         margin: 5% 0;
-    }
-    .menu-section-container {
-        margin-top: 5%;
     }
     .menu-section:last-child>p:last-child {
         font-weight: bold;
@@ -101,6 +112,9 @@
 }
 
 @media screen and (max-width: 500px) {
+    main {
+        margin-top: 5%;
+    }
     .menu-logo {
         padding: 5%;
     }
@@ -116,5 +130,28 @@
     }
     .header-content {
         top: 170px;
+    }
+    .header-content h1 {
+        font-size: 4.2rem;
+    }
+    .header-content h2 {
+        font-size: 1.27rem;
+    }
+    .header-content h3 {
+        font-size: 2.3rem;
+    }
+    .social-item p {
+        display: none;
+    }
+    .social-item:first-child {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        padding: 0;
+    }
+    .phone i {
+        padding-right: 0;
+        border-right: 0;
     }
 }

@@ -184,6 +184,23 @@ import {
             $('button.active').click(() => { alertFadeOut() })
         }))
     } else setLink('a.phone', `tel:${ getText($('.phone')) }`)
+    if (screen < 551) {
+        $(document).on('click', '.title-cat', ((e) => {
+            const target = e.currentTarget.className.split(' ')
+            const trigger = target[target.length - 1].split('-')
+            const icon = e.currentTarget.children[0].children[1]
+            if (icon.classList[icon.classList.length - 1] === 'fa-chevron-down') {
+                icon.classList.remove('fa-chevron-down')
+                icon.classList.add('fa-chevron-up')
+            } else {
+                icon.classList.remove('fa-chevron-up')
+                icon.classList.add('fa-chevron-down')
+
+            }
+            trigger.shift()
+            slideToggle($(`.container-${ trigger.join('-') }`))
+        }))
+    }
 
 
 

@@ -107,7 +107,8 @@ main .container>div {
 
 /* Menu */
 
-.menu-content {
+.menu-content,
+#restaurante .menu-section:first-child>.menu-item-container {
     height: auto;
     flex-wrap: wrap;
 }
@@ -185,10 +186,6 @@ main .container>div {
 
 #restaurante .menu-section:first-child>.menu-item-container .menu-item {
     width: 50%;
-}
-
-#restaurante .menu-section:first-child>.menu-item-container {
-    flex-wrap: wrap;
 }
 
 #restaurante .menu-section:first-child {

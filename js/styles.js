@@ -66,7 +66,7 @@ export const cssNavImg = () => {
 export const cssHeaderContent = () => {
     return {
         'position': 'relative',
-        'top': `${ window.innerWidth > 500 ? '55%' : '40%' }`,
+        'top': `${ window.innerWidth < 501 ? '40%' : window.innerWidth < 410 ? '20%' : '55%' }`,
     }
 }
 

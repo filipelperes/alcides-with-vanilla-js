@@ -37,6 +37,12 @@ export const bool = (page) => { return page === 'pizzaria' }
 export const capitalize = (str) => { return str.charAt(0).toUpperCase() + str.slice(1); }
 export const lowercase = (str) => { return str.charAt(0).toLowerCase() + str.slice(1); }
 export const justLettersAndNumber = (str) => { return str.replace(/[^\w]/g, "") }
+export const fixTitle = (str) => {
+    return str.split('-').map((val, i) => {
+        const bool = str.split('-').length > 2 && i > 0 || (i === 1 && val.length < 3)
+        return bool ? val : val === 'camaroes' ? 'Camarões' : capitalize(val)
+    }).join(' ')
+}
 
 //JQUERY
 export const addClass = (el, c) => { el.addClass(c) }
