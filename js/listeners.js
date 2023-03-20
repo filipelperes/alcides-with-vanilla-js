@@ -37,12 +37,8 @@ import {
 
 (($) => {
     //STICKY EFFECT
-    const isStart = $(window).scrollTop() < 72
-    const isSticky = $(window).scrollTop() >= $('header').offset().top
-    const isBeforeMain = $(window).scrollTop() < $('main').offset().top
-    const isMain = $(window).scrollTop() > $('main').offset().top
-    const arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 ']
-    const handleBool = (bool) => { return !bool }
+    let arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 ']
+    let handleBool = (bool) => { return !bool }
     let boolNav = true
     let boolPhoneText = true
     let boolMSticky = false
@@ -79,7 +75,7 @@ import {
         applyCSS($('.social-container a i'), { 'color': '#fff' })
     }
     const stickyEffect = () => {
-            if (isSticky) {
+            if ($(window).scrollTop() >= $('header').offset().top) {
                 applyCSS($('.social-container'), cssSocialContainer)
                 applyCSS($('.social-item:first-child'), cssSocialItemPhone)
                 applyCSS($('.phone i'), cssPhone)
@@ -131,9 +127,9 @@ import {
                 addClassList('.menu-selected2', 'menu-selected')
                 removeClassList('.menu-selected2', 'menu-selected2')
             }
-            if (isStart) removeStyle($('header'))
-            if (isSticky && isBeforeMain) menuLogoSticky()
-            if (isMain) menuLogoSticky()
+            if ($(window).scrollTop() < 72) removeStyle($('header'))
+            if ($(window).scrollTop() >= $('header').offset().top && $(window).scrollTop() < $('main').offset().top) menuLogoSticky()
+            if ($(window).scrollTop() > $('main').offset().top) menuLogoSticky()
         }
         //FIM STICKY EFFECT
 
@@ -213,7 +209,7 @@ import {
     $(document).on('click', 'nav.menu a', ((e) => {
         const target = lowercase(e.currentTarget.className.split('-')[0])
         $('html, body').animate({ scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }, 2000);
-        if (isSticky) hideNavSticky()
+        if ($(window).scrollTop() > 70) hideNavSticky()
     }))
 
     stickyEffect()
