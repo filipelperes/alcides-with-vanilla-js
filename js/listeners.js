@@ -190,7 +190,7 @@ import {
     btnSocialContainer.on('click', (e) => {
         const socialContainer = $('.social-container')
         toggleClass(btnSocialContainerIcon, 'fa-caret-left')
-        socialContainer.animate(getSocialContainerLeft() !== '50px' ? animateSocialContainer(getSocialContainerWidth()) : animateSocialContainerBack(getSocialContainerWidth()), 1000)
+        socialContainer.animate(getSocialContainerLeft() !== '50px' ? animateSocialContainer(getSocialContainerWidth()) : animateSocialContainerBack(getSocialContainerWidth()), 1500)
     })
 
     //MENU STICKY
