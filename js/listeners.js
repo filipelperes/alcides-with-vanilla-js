@@ -127,8 +127,10 @@ import {
             if (!boolControlSticky) boolControlSticky = handleBool(boolControlSticky);
         }
         if ($(window).scrollTop() < 72) removeStyle($('header'));
-        if ($(window).width() < 500 && $(window).scrollTop() > 70) applyCSS($('.menu-logo>div'), toggleDisplay(false));
-        else applyCSS($('.menu-logo>div'), toggleDisplay(true));
+        if ($(window).width() < 501 && $(window).scrollTop() > 70) applyCSS($('.menu-logo>div'), toggleDisplay(false));
+        else removeStyle($('.menu-logo>div'));
+        if ($(`.${getClass()}`) !== null && getText($(`.${getClass()}`)) === 'Pizzaria') applyCSS($('.chefs-container'), toggleDisplay(false));
+        else removeStyle($('.chefs-container'));
     };
     //FIM STICKY EFFECT
 

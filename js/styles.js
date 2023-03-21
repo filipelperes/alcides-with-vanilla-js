@@ -25,7 +25,9 @@ export const cssHoverMenuLogo = (classe) => {
 };
 
 export const cssLinkMenuLogo = () => {
-    const color = isStickyBeforeMain() ? 'fourth-color' : isMain() ? 'secondary-border' : 'secondary-color';
+    const color = isStickyBeforeMain() ? 'fourth-color'
+        : isMain() ? 'secondary-border'
+            : 'secondary-color';
     return {
         'color': `var(--${color})`
     };
@@ -72,7 +74,9 @@ export const cssNavImg = () => {
 export const cssHeaderContent = () => {
     return {
         'position': 'relative',
-        'top': `${window.innerWidth < 501 ? '40%' : window.innerWidth < 410 ? '20%' : '55%'}`,
+        'top': `${window.innerWidth < 501 ? '40%'
+            : window.innerWidth < 410 ? '20%'
+                : '55%'}`,
     };
 };
 
@@ -126,7 +130,11 @@ export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-bord
 export const cssDisplayFlex = { 'display': 'flex', };
 
 export const animateSocialContainer = (width) => {
-    return { left: document.querySelector('.social-container') !== null && document.querySelector('.social-container').style.left < '0px' ? `${window.innerWidth < 550 ? (parseInt(width) + 27) : parseInt(width)}` : `-${parseInt(width) * 2}` };
+    return {
+        left: document.querySelector('.social-container') !== null && document.querySelector('.social-container').style.left < '0px' ?
+            `${window.innerWidth < 550 ? (parseInt(width) + 27) : parseInt(width)}`
+            : `-${parseInt(width) * 2}`
+    };
 };
 
 
@@ -135,6 +143,5 @@ export const animateNavMenu = (target) => {
 };
 
 //VANILLA JS
-export const applyImg = (query, val) => { document.querySelector(query).style.backgroundImage = `url(imgs/${val}.png)`; };
-export const applyMargin = (query, val) => { document.querySelector(query).style.marginTop = val; };
-export const display = (query, val) => { document.querySelector(query).style.display = val; };
+export const applyImg = (query, val) => { document.querySelector(query) !== null ? document.querySelector(query).style.backgroundImage = `url(imgs/${val}.png)` : false; };
+export const applyMargin = (query, val) => { document.querySelector(query) !== null ? document.querySelector(query).style.marginTop = val : false; };

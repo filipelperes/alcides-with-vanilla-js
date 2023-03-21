@@ -40,7 +40,9 @@ export const justLettersAndNumber = (str) => { return str.replace(/[^\w]/g, "");
 export const fixTitle = (str) => {
     return str.split('-').map((val, i) => {
         const bool = str.split('-').length > 2 && i > 0 || (i === 1 && val.length < 3);
-        return bool ? val : val === 'camaroes' ? 'Camarões' : capitalize(val);
+        return bool ? val
+            : val === 'camaroes' ? 'Camarões'
+                : capitalize(val);
     }).join(' ');
 };
 
@@ -77,13 +79,13 @@ const getWindowWidth = () => { return window.innerWidth; };
 //MARCANDO MENU CONFORME A DIV QUE ESTÁ NA TELA
 const controlNavRestaurante = (isMenu, isSobre, isChef) => {
     if (isMenu) addClassList('.menu-link', 'nav-selected');
-    else if (isSobre) addClassList('.sobre-link', 'nav-selected');
-    else if (isChef) addClassList('.Chefs-link', 'nav-selected');
+    if (isSobre) addClassList('.sobre-link', 'nav-selected');
+    if (isChef) addClassList('.Chefs-link', 'nav-selected');
 };
 
 const controlNavPizzaria = (isMenu, isSobre) => {
     if (isMenu) addClassList('.menu-link', 'nav-selected');
-    else if (isSobre) addClassList('.sobre-link', 'nav-selected');
+    if (isSobre) addClassList('.sobre-link', 'nav-selected');
 };
 
 export const menuListener = (page = notNull(`.${getClass()}`) ? document.querySelector(`.${getClass()}`).innerHTML.toLowerCase() : false) => {
@@ -91,11 +93,18 @@ export const menuListener = (page = notNull(`.${getClass()}`) ? document.querySe
     removeClassList('.nav-selected', 'nav-selected');
     isMenu = getWindowHeight() > document.querySelector('.menu-container').offsetTop && getWindowHeight() < document.querySelector('.menu-container+div').offsetTop;
     if (!bool(page)) {
-        isSobre = getWindowHeight() > document.querySelector('.sobre-container').offsetTop && getWindowHeight() < document.querySelector('.sobre-container+div').offsetTop;
-        isChef = getWindowWidth() < 501 ? getWindowHeight() > (document.querySelector('.chefs-container').offsetTop / 2) : getWindowHeight() > document.querySelector('.chefs-container').offsetTop;
+        isSobre = getWindowWidth() < 501 ?
+            getWindowHeight() > document.querySelector('.sobre-container').offsetTop && getWindowHeight() < ((document.querySelector('.sobre-container').offsetTop + document.querySelector('.chefs-container').offsetTop) / 2 - 50)
+            : getWindowHeight() > document.querySelector('.sobre-container').offsetTop && getWindowHeight() < document.querySelector('.sobre-container+div').offsetTop;
+        isChef = getWindowWidth() < 501 ?
+            getWindowHeight() > ((document.querySelector('.sobre-container').offsetTop + document.querySelector('.chefs-container').offsetTop) / 2)
+            : getWindowHeight() > document.querySelector('.chefs-container').offsetTop;
         controlNavRestaurante(isMenu, isSobre, isChef);
     } else {
-        isSobre = getWindowWidth() < 501 ? getWindowHeight() > (document.querySelector('.sobre-container').offsetTop / 2) : getWindowHeight() > document.querySelector('.sobre-container').offsetTop;
+        isSobre = getWindowWidth() < 501 ?
+            getWindowHeight() > ((document.querySelector('main>.container>div:nth-child(2)').offsetTop + document.querySelector('.sobre-container').offsetTop) / 2 - 100)
+            : getWindowHeight() > document.querySelector('.sobre-container').offsetTop;
+
         controlNavPizzaria(isMenu, isSobre);
     }
 };

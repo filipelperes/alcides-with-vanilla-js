@@ -1,7 +1,7 @@
 import { renderCardapio } from './cardapio.js';
 import { dataPizzaria, dataRestaurante } from './data.js';
 import { renderHeader } from './header.js';
-import { applyImg, applyMargin, display } from './styles.js';
+import { applyImg, applyMargin } from './styles.js';
 import { bool, menuListener, notNull, render } from './utils.js';
 
 let img, img2, d;
@@ -76,20 +76,21 @@ export const contentControl = (page = notNull(`.${getClass()}`) ? document.query
     if (bool(page)) {
         img = 'bgtomate';
         img2 = 'bgfornoalenha';
-        d = 'none';
         applyMargin('main>.container>div:nth-child(2)', `5%`);
     } else {
         img = 'bgingredientes';
         img2 = 'bgfeijoada';
-        d = 'flex';
-        applyMargin('main>.container>div:nth-child(2)', `${(getWindowWidth() <= 550) ? '0' : (getWindowWidth() <= 850) ? '-30%' : (getWindowWidth() <= 900) ? '-29%' : (getWindowWidth() <= 1000) ? '-27%' : (getWindowWidth() < 1200) ? '-23%' : '-17%'}`);
+        applyMargin('main>.container>div:nth-child(2)', `${(getWindowWidth() <= 550) ? '0'
+            : (getWindowWidth() <= 850) ? '-30%'
+                : (getWindowWidth() <= 900) ? '-29%'
+                    : (getWindowWidth() <= 1000) ? '-27%'
+                        : (getWindowWidth() < 1200) ? '-23%' : '-17%'}`);
         applyMargin('.section-content:nth-child(2)', `${(getWindowWidth() <= 700) ? '5%' : '0'}`);
     }
 
 
     applyImg(`main>.container>div:nth-child(2)`, img);
     applyImg(`main>.container>div:nth-child(4)`, img2);
-    display('.chefs-container', d);
 };
 
 export const renderPage = (page) => {
