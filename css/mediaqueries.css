@@ -4,6 +4,12 @@
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .header {
+        background-position: center !important;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .container {
         padding: 0 5%;
@@ -116,7 +122,7 @@
         margin-top: 5%;
     }
     .menu-logo {
-        padding: 5%;
+        padding: 5% 7%;
     }
     .menu-logo img {
         position: absolute;
