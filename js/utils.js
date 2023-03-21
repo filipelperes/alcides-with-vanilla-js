@@ -78,17 +78,16 @@ const controlNavRestaurante = (isMenu, isSobre, isChef) => {
     if (isMenu) addClassList('.menu-link', 'nav-selected')
     else if (isSobre) addClassList('.sobre-link', 'nav-selected')
     else if (isChef) addClassList('.Chefs-link', 'nav-selected')
-    else removeClassList('.nav-selected', 'nav-selected')
 }
 
 const controlNavPizzaria = (isMenu, isSobre) => {
     if (isMenu) addClassList('.menu-link', 'nav-selected')
     else if (isSobre) addClassList('.sobre-link', 'nav-selected')
-    else removeClassList('.nav-selected', 'nav-selected')
 }
 
 export const menuListener = (page = notNull(`.${ getClass() }`) ? document.querySelector(`.${ getClass() }`).innerHTML.toLowerCase() : false) => {
     let isMenu, isSobre, isChef
+    removeClassList('.nav-selected', 'nav-selected')
     isMenu = getWindowHeight() > document.querySelector('.menu-container').offsetTop && getWindowHeight() < document.querySelector('.menu-container+div').offsetTop
     if (!bool(page)) {
         isSobre = getWindowHeight() > document.querySelector('.sobre-container').offsetTop && getWindowHeight() < document.querySelector('.sobre-container+div').offsetTop

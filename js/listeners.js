@@ -131,10 +131,7 @@ import {
                 }
                 if (!boolControlSticky) boolControlSticky = handleBool(boolControlSticky)
             }
-            if ($(window).scrollTop() < 72) {
-                removeStyle($('header'))
-                if ($('.nav-selected') !== null) removeClassList('.nav-selected', 'nav-selected')
-            }
+            if ($(window).scrollTop() < 72) removeStyle($('header'))
             if ($(window).width() < 500 && $(window).scrollTop() > 70) applyCSS($('.menu-logo>div'), toggleDisplay(false))
             else applyCSS($('.menu-logo>div'), toggleDisplay(true))
         }
@@ -212,7 +209,7 @@ import {
         e.stopPropagation();
         slideToggle($('nav'));
         toggleClass(btnIcon, 'fa-xmark')
-        document.addEventListener('click', (e) => { if ($('nav') !== e.target && !$('nav').has(e.target).length) hideNavSticky() })
+        document.addEventListener('click', (e) => { if (($('nav') !== e.target && !$('nav').has(e.target).length) || $(window).scrollTop() > 70) hideNavSticky() })
     }))
 
     //MENU LOGO LINK CLICK    
