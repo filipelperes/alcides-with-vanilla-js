@@ -94,7 +94,7 @@ export const cssHeader = {
     'top': '0',
     'margin-top': '0',
     'width': '100vw',
-    'z-index': '999',
+    'z-index': '9999',
 }
 
 export const cssNav = {
