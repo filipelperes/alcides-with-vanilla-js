@@ -39,7 +39,7 @@ button {
 }
 
 img {
-    width: 100%;
+    width: auto;
     height: auto;
 }
 
@@ -338,7 +338,7 @@ header>.menu-sticky i,
     transform: translate(-50%, -50%);
     font-size: 3rem;
     text-shadow: none;
-    z-index: 100;
+    z-index: 100 !important;
 }
 
 .nav-selected {

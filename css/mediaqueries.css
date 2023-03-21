@@ -32,13 +32,6 @@
     .section-content-text {
         width: 100%;
     }
-    .sobre-container .section-content:first-child .section-content-text,
-    .sobre-container .section-content:first-child .section-content-img figure:first-child {
-        margin-right: 0;
-    }
-    .sobre-container .section-content:last-child .section-content-text {
-        margin-left: 0;
-    }
 }
 
 @media screen and (max-width: 550px) {

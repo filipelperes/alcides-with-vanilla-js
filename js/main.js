@@ -29,7 +29,7 @@ const renderDescRestaurante = (title, desc, desc2) => {
 }
 
 const renderSobreRestaurante = ({ title, desc, desc2 }) => {
-    return `<div class="section-content flex">
+    return `<div class="section-content section-content-restaurante flex">
                 <div class="section-content-text">
                     ${ renderDescRestaurante(title, desc, desc2) }
                 </div>

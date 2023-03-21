@@ -264,20 +264,23 @@ main .container>div {
 
 .section-content-img figure {
     width: 100%;
-    max-width: 480px;
+    max-width: 500px;
 }
 
-.sobre-container .section-content-img img {
-    max-width: 480px;
+.section-content-img img {
+    max-width: 500px;
 }
 
-.sobre-container .section-content:first-child .section-content-text,
-.sobre-container .section-content:first-child .section-content-img figure:first-child {
-    margin-right: 2%;
+.section-content-restaurante figure {
+    max-width: 270px;
 }
 
-.sobre-container .section-content:last-child .section-content-text {
-    margin-left: 2%;
+.section-content-restaurante img {
+    max-width: 270px;
+}
+
+.section-content-restaurante figure:last-child img {
+    margin-left: 5%;
 }
 
 
@@ -291,6 +294,10 @@ main .container>div {
     width: 47%;
     border: 3px solid var(--main-box-shadow);
     text-align: center;
+}
+
+.chef-card img {
+    width: 100%;
 }
 
 .chef-card p {
