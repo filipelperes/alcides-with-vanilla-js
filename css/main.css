@@ -248,6 +248,12 @@ main .container>div {
 
 .section-content-text {
     flex: 2;
+    padding-left: 5%;
+}
+
+.section-content-restaurante .section-content-text {
+    padding-left: 0;
+    padding-right: 5%;
 }
 
 .section-content-text h4 {
@@ -269,6 +275,10 @@ main .container>div {
 
 .section-content-img img {
     max-width: 500px;
+}
+
+.section-content-restaurante {
+    margin-bottom: 2%;
 }
 
 .section-content-restaurante figure {

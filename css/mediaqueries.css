@@ -5,15 +5,34 @@
 }
 
 @media screen and (max-width: 1000px) {
+    .container {
+        padding: 0 5%;
+    }
     .header {
         background-position: center !important;
+    }
+    .section-content-img figure,
+    .section-content-img img {
+        max-width: 400px;
+    }
+    .section-content-restaurante img,
+    .section-content-restaurante figure {
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .section-content-img figure,
+    .section-content-img img {
+        max-width: 300px;
+    }
+    .section-content-restaurante img,
+    .section-content-restaurante figure {
+        max-width: 150px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .container {
-        padding: 0 5%;
-    }
     #restaurante .categoria:nth-child(2) {
         top: -130px;
     }
@@ -31,6 +50,7 @@
     }
     .section-content-text {
         width: 100%;
+        padding: 0;
     }
 }
 
