@@ -20,7 +20,6 @@ import {
     cssHeaderContent,
     animateSocialContainer,
     animateNavMenu,
-    animateSocialContainerBack,
     cssButtonSocialContainer
 } from './styles.js'
 import {
@@ -205,7 +204,7 @@ import {
     btnSocialContainer.on('click', (e) => {
         const socialContainer = $('.social-container')
         toggleClass(btnSocialContainerIcon, 'fa-caret-left')
-        socialContainer.animate(getSocialContainerLeft() < '0px' ? animateSocialContainer(getSocialContainerWidth()) : animateSocialContainerBack(getSocialContainerWidth()), 700)
+        socialContainer.animate(animateSocialContainer(getSocialContainerWidth()), 700)
     })
 
     //MENU STICKY

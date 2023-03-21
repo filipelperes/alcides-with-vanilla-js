@@ -126,12 +126,9 @@ export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-bord
 export const cssDisplayFlex = { 'display': 'flex', }
 
 export const animateSocialContainer = (width) => {
-    return { left: `${ window.innerWidth < 550 ? (parseInt(width) + 27) : parseInt(width) }` }
+    return { left: document.querySelector('.social-container') !== null && document.querySelector('.social-container').style.left < '0px' ? `${ window.innerWidth < 550 ? (parseInt(width) + 27) : parseInt(width) }` : `-${ parseInt(width) * 2 }` }
 }
 
-export const animateSocialContainerBack = (width) => {
-    return { left: `-${ parseInt(width) * 2 }` }
-}
 
 export const animateNavMenu = (target) => {
     return { scrollTop: (document.querySelector(`.${ target }-container`).offsetTop) + 50 }
