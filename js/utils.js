@@ -104,7 +104,6 @@ export const menuListener = (page = notNull(`.${getClass()}`) ? document.querySe
         isSobre = getWindowWidth() < 501 ?
             getWindowHeight() > ((document.querySelector('main>.container>div:nth-child(2)').offsetTop + document.querySelector('.sobre-container').offsetTop) / 2 - 100)
             : getWindowHeight() > document.querySelector('.sobre-container').offsetTop;
-
         controlNavPizzaria(isMenu, isSobre);
     }
 };
