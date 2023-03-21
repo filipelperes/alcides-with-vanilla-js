@@ -1,4 +1,4 @@
-import { renderPage } from './main.js'
+import { renderPage, contentControl } from './main.js'
 import { addClassList, removeClassList, menuListener } from './utils.js'
 
 (() => {
@@ -6,4 +6,6 @@ import { addClassList, removeClassList, menuListener } from './utils.js'
     renderPage(document.querySelector('.menu-selected').innerHTML.toLowerCase() || 'restaurante')
 })()
 
+
 window.onload = menuListener
+window.onload = contentControl

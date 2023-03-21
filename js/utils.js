@@ -56,7 +56,7 @@ export const getClass = () => { return window.scrollY > 70 ? 'menu-selected2' : 
 export const getEl = (query) => { return document.querySelector(query) }
 export const setLink = (query, val) => { return document.querySelector(query).href = val }
 
-const notNull = (query) => { return document.querySelector(query) !== null }
+export const notNull = (query) => { return document.querySelector(query) !== null }
 export const addClassList = (query, c) => { notNull(query) ? document.querySelector(query).classList.add(c) : false }
 export const removeClassList = (query, c) => { notNull(query) ? document.querySelector(query).classList.remove(c) : false }
 

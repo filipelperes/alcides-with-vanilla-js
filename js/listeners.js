@@ -42,15 +42,16 @@ import {
 
 (($) => {
     //STICKY EFFECT
-    let arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 ']
-    let handleBool = (bool) => { return !bool }
-    let boolNav = true
-    let boolPhoneText = true
-    let boolMSticky = false
-    let boolButtonSocialContainer = false
-    let boolSocialContainer = true
+    let boolControlSticky = true
+    const arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 ']
+    const btnSocialContainer = $('.button-social-container')
+    const btnSocialContainerIcon = $('.button-social-container i')
+    const btnMenu = $('.menu-sticky')
+    const btnIcon = $('.menu-sticky i')
+    const menuLogoLink = $('.menu-logo a')
     const getSocialContainerWidth = () => { return $('.social-container').css('width') }
     const getSocialContainerLeft = () => { return $('.social-container').css('left') }
+    const handleBool = (bool) => { return !bool }
 
     const hideNavSticky = () => {
         applyCSS($('nav'), toggleDisplay(false))
@@ -77,34 +78,29 @@ import {
         $('.social-container a:nth-child(5)').css('background', arr[3])
         applyCSS($('.social-container a i'), { 'color': '#fff' })
     }
+
+    const renderOnceTime = () => {
+        applyCSS($('.button-social-container'), toggleDisplay(true))
+        applyCSS($('.social-container'), cssSocialContainer(getSocialContainerWidth()))
+        applyCSS($('.social-item:first-child'), cssSocialItemPhone)
+        applyCSS($('.phone i'), cssPhone)
+        applyCSS($('.phone p'), toggleDisplay(false))
+        applyCSS($('header'), cssHeader)
+        applyCSS($('.menu-sticky'), toggleDisplay(true))
+        applyCSS($('nav'), toggleDisplay(false))
+        navSticky()
+    }
     const stickyEffect = () => {
             if ($(window).scrollTop() > 70) {
                 applyBgAfterScroll()
                 renderHoverInClass()
                 applyCSS($('.button-social-container'), cssButtonSocialContainer())
-                applyCSS($('.social-container'), cssSocialContainer(getSocialContainerWidth()))
-                applyCSS($('.social-item:first-child'), cssSocialItemPhone)
-                applyCSS($('.phone i'), cssPhone)
-                applyCSS($('header'), cssHeader)
                 applyCSS($('.menu-logo'), cssMenuLogo())
                 applyCSS($('.menu-logo>div img'), cssNavImg())
                 applyCSS($('.header-content'), cssHeaderContent())
-                if (!boolButtonSocialContainer) {
-                    applyCSS($('.button-social-container'), toggleDisplay(true))
-                    boolButtonSocialContainer = handleBool(boolButtonSocialContainer)
-                }
-                if (boolPhoneText) {
-                    applyCSS($('.phone p'), toggleDisplay(false))
-                    boolPhoneText = handleBool(boolPhoneText)
-                }
-                if (boolNav) {
-                    navSticky()
-                    applyCSS($('nav'), toggleDisplay(false))
-                    boolNav = handleBool(boolNav)
-                }
-                if (!boolMSticky) {
-                    applyCSS($('.menu-sticky'), toggleDisplay(true))
-                    boolMSticky = handleBool(boolMSticky)
+                if (boolControlSticky) {
+                    renderOnceTime()
+                    boolControlSticky = handleBool(boolControlSticky)
                 }
                 addClassList('.menu-selected', 'menu-selected2')
                 removeClassList('.menu-selected', 'menu-selected')
@@ -115,26 +111,14 @@ import {
                 removeStyle($('.social-container a i'))
                 removeStyle($('.social-item:first-child'))
                 removeStyle($('.phone i'))
+                removeStyle($('.phone p'))
                 removeStyle($('.menu-logo'))
                 removeStyle($('.menu-logo a'))
                 removeStyle($('.menu-logo>div img'))
-                if (boolButtonSocialContainer) {
-                    removeStyle($('.button-social-container'))
-                    boolButtonSocialContainer = handleBool(boolButtonSocialContainer)
-                }
-                if (!boolNav) {
-                    removeStyle($('nav'))
-                    applyCSS($('nav'), cssDisplayFlex)
-                    boolNav = handleBool(boolNav)
-                }
-                if (boolMSticky) {
-                    applyCSS($('.menu-sticky'), toggleDisplay(false))
-                    boolMSticky = handleBool(boolMSticky)
-                }
-                if (!boolPhoneText) {
-                    removeStyle($('.phone p'))
-                    boolPhoneText = handleBool(boolPhoneText)
-                }
+                removeStyle($('.menu-sticky'))
+                    // applyCSS($('.menu-sticky'), toggleDisplay(false))
+                removeStyle($('nav'))
+                    // applyCSS($('nav'), cssDisplayFlex)
                 removeStyle($('nav a'))
                 removeStyle($('nav a:nth-child(2)'))
                 removeStyle($('nav a:not(:last-child)'))
@@ -142,8 +126,16 @@ import {
                 addClassList('.menu-selected2', 'menu-selected')
                 removeClassList('.menu-selected2', 'menu-selected2')
                 if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark')
+                if ($('.button-social-container i').hasClass('fa-caret-left')) {
+                    $('.button-social-container i').removeClass('fa-caret-left')
+                    $('.button-social-container i').addClass('fa-caret-right')
+                }
+                if (!boolControlSticky) boolControlSticky = handleBool(boolControlSticky)
             }
-            if ($(window).scrollTop() < 72) removeStyle($('header'))
+            if ($(window).scrollTop() < 72) {
+                removeStyle($('header'))
+                if ($('.nav-selected') !== null) removeClassList('.nav-selected', 'nav-selected')
+            }
             if ($(window).width() < 500 && $(window).scrollTop() > 70) applyCSS($('.menu-logo>div'), toggleDisplay(false))
             else applyCSS($('.menu-logo>div'), toggleDisplay(true))
         }
@@ -173,8 +165,15 @@ import {
     let screen = $(window).width()
 
     //WINDOW EFFECTS
+    stickyEffect()
+    if ($(window).scrollTop() > 70) renderHoverInClass()
     $(window).scroll(stickyEffect)
-    window.onresize = (e) => screen = $(window).width()
+    $(window).resize(stickyEffect)
+    $(window).scroll(menuListener)
+    $(window).resize(menuListener)
+    $(window).scroll(contentControl)
+    $(window).resize(contentControl)
+    window.onresize = (e) => { screen = $(window).width() }
 
     //BREAKPOINTS
     if (screen > 767) {
@@ -184,6 +183,7 @@ import {
             $('button.active').click(() => { alertFadeOut() })
         }))
     } else setLink('a.phone', `tel:${ getText($('.phone')) }`)
+
     if (screen < 551) {
         $(document).on('click', '.title-cat', ((e) => {
             const target = e.currentTarget.className.split(' ')
@@ -202,19 +202,13 @@ import {
         }))
     }
 
-
-
-    const btnSocialContainer = $('.button-social-container')
-    const btnSocialContainerIcon = $('.button-social-container i')
     btnSocialContainer.on('click', (e) => {
         const socialContainer = $('.social-container')
         toggleClass(btnSocialContainerIcon, 'fa-caret-left')
-        socialContainer.animate(getSocialContainerLeft() !== '50px' ? animateSocialContainer(getSocialContainerWidth()) : animateSocialContainerBack(getSocialContainerWidth()), 1500)
+        socialContainer.animate(getSocialContainerLeft() < '0px' ? animateSocialContainer(getSocialContainerWidth()) : animateSocialContainerBack(getSocialContainerWidth()), 700)
     })
 
     //MENU STICKY
-    const btnMenu = $('.menu-sticky')
-    const btnIcon = $('.menu-sticky i')
     btnMenu.on('click', ((e) => {
         e.stopPropagation();
         slideToggle($('nav'));
@@ -223,7 +217,6 @@ import {
     }))
 
     //MENU LOGO LINK CLICK    
-    const menuLogoLink = $('.menu-logo a');
     menuLogoLink.on({
         mouseenter: (e) => {
             const target = e.currentTarget.className.split('-')
@@ -238,10 +231,12 @@ import {
             const target = lowercase(e.currentTarget.innerHTML)
             $(`.${ getClass() }`).removeClass(getClass())
             addClass($(`.menu-logo .menu-logo-${ target }`), getClass())
-            removeStyle($(`.menu-logo-${ target === 'pizzaria' ? "restaurante" : "pizzaria" }`))
-            renderHoverInClass()
             renderPage(target)
-            navSticky()
+            removeStyle($(`.menu-logo-${ target === 'pizzaria' ? "restaurante" : "pizzaria" }`))
+            if ($(window).scrollTop() > 70) {
+                navSticky()
+                renderHoverInClass()
+            }
         },
     })
 
@@ -249,16 +244,11 @@ import {
     $(document).on('click', 'nav.menu a', ((e) => {
         const target = lowercase(e.currentTarget.className.split('-')[0])
         removeClassList('.nav-selected', 'nav-selected')
-        $('html, body').animate(animateNavMenu(target), 2000);
+        $('html, body').animate(animateNavMenu(target), 1700);
         if ($(window).scrollTop() > 70) hideNavSticky()
     }))
-
-    stickyEffect()
 })(jQuery)
 
 document.onkeydown = fkey
 document.onkeypress = fkey
 document.onkeyup = fkey
-window.onscroll = menuListener
-window.onresize = menuListener
-window.onresize = contentControl

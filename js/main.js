@@ -1,7 +1,7 @@
 import { dataRestaurante, dataPizzaria } from './data.js'
 import { renderHeader } from './header.js'
 import { renderCardapio } from './cardapio.js'
-import { render, bool, menuListener } from './utils.js'
+import { render, bool, menuListener, notNull } from './utils.js'
 import { applyImg, applyMargin, display } from './styles.js'
 
 let img, img2, d;
@@ -72,7 +72,7 @@ const renderContentEven = ({ contentEven }) => {
             </div>`
 }
 
-export const contentControl = (page) => {
+export const contentControl = (page = notNull(`.${ getClass() }`) ? document.querySelector(`.${ getClass() }`).innerHTML.toLowerCase() : false) => {
     if (bool(page)) {
         img = 'bgtomate'
         img2 = 'bgfornoalenha'

@@ -40,23 +40,29 @@ export const cssMenuLogo = () => {
         'box-shadow': '0px 2px 2px var(--main-box-shadow)',
         'background': `var(--${ bg }-border)`,
         'text-shadow': 'none',
+        'position': 'fixed',
+        'top': '0',
     }
 }
 
 export const cssSocialContainer = (width) => {
     return {
         'position': 'fixed',
-        'top': '0',
+        'top': '50%',
+        'transform': 'translateY(-50%)',
         'left': `-${ parseInt(width) * 2 }px`,
         'width': 'auto',
-        'height': '100vh',
+        'height': '60%',
         'flex-direction': 'column',
         'margin-left': '2%',
     }
 }
 
 export const cssButtonSocialContainer = () => {
-    return { 'background': `var(--${ window.scrollY > 270 ? 'footer' : 'secondary' }-border)`, }
+
+    return {
+        'background': `var(--${ window.scrollY > (document.querySelector('main').offsetTop / 2) ? 'footer' : 'secondary' }-border)`,
+    }
 }
 
 export const cssNavImg = () => {
@@ -120,7 +126,7 @@ export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-bord
 export const cssDisplayFlex = { 'display': 'flex', }
 
 export const animateSocialContainer = (width) => {
-    return { left: width }
+    return { left: `${ window.innerWidth < 550 ? (parseInt(width) + 27) : parseInt(width) }` }
 }
 
 export const animateSocialContainerBack = (width) => {
