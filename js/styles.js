@@ -74,7 +74,7 @@ export const cssNavImg = () => {
 export const cssHeaderContent = () => {
     return {
         'position': 'relative',
-        'top': `${window.innerWidth < 501 ? '40%'
+        'top': `${window.innerWidth < 551 ? '40%'
             : window.innerWidth < 410 ? '20%'
                 : '55%'}`,
     };
@@ -132,7 +132,7 @@ export const cssDisplayFlex = { 'display': 'flex', };
 export const animateSocialContainer = (width) => {
     return {
         left: document.querySelector('.social-container') !== null && document.querySelector('.social-container').style.left < '0px' ?
-            `${window.innerWidth < 550 ? (parseInt(width) + 27) : parseInt(width)}`
+            `${window.innerWidth < 551 ? (parseInt(width) + 27) : parseInt(width)}`
             : `-${parseInt(width) * 2}`
     };
 };
