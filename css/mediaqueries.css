@@ -57,7 +57,9 @@
 @media screen and (max-width: 550px) {
     .menu-section,
     .menu-section-container,
-    .title-cat {
+    .title-cat,
+    #restaurante .menu-section:first-child>.menu-item-container .menu-item,
+    #pizzaria .menu-section:not(:last-child)  {
         width: 100%;
     }
     .menu-item {
@@ -73,21 +75,19 @@
     #restaurante .menu-section:last-child {
         top: 0px;
     }
-    #restaurante .categoria:not(:first-child) .menu-item {
-        margin-top: 0;
-    }
+    #restaurante .categoria:not(:first-child) .menu-item,
     #restaurante .menu-section:first-child,
     #pizzaria .menu-section:first-child>.menu-section-container:nth-child(1) {
-        margin-bottom: 0;
-    }
-    #restaurante .menu-section:first-child>.menu-item-container .menu-item,
-    #pizzaria .menu-section:not(:last-child) {
-        width: 100%;
+        margin: 0;
     }
     #restaurante .menu-section:first-child>.menu-item-container,
     .menu-content,
     .menu-section:last-child {
         flex-direction: column;
+    }
+    .menu-content>div:last-child p:last-child {
+        text-align: center;
+        margin: 2% 0 5% 0;;
     }
     #pizzaria>div:nth-child(2) {
         order: -1;
@@ -128,6 +128,27 @@
         flex: 1;
         text-align: center;
     }
+    .sobre-content .section-content-text {
+        text-align: justify;
+        padding: 0 3%;
+    }
+    .section-content-text>p:last-child,
+    .section-content-restaurante>p:last-child {
+        margin-top: 3%;
+    }
+    .section-content-text>p:last-child {
+        margin-bottom: 5%;
+    }
+    .sobre-title {
+        margin-top: 7%;
+    }
+    .sobre-title>span {
+        width: 70%;
+        margin-top: 2%;
+    }
+    .sobre-title>h3>span:last-child {
+        top: -13px;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -154,7 +175,7 @@
         font-size: 4.2rem;
     }
     .header-content h2 {
-        font-size: 1.27rem;
+        font-size: 1.7rem;
     }
     .header-content h3 {
         font-size: 2.3rem;
