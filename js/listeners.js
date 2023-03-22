@@ -159,7 +159,6 @@ import {
 
     //WINDOW EFFECTS
     stickyEffect();
-    if ($(window).scrollTop() > 70) renderHoverInClass();
     $(window).scroll(stickyEffect);
     $(window).resize(stickyEffect);
     $(window).scroll(menuListener);
