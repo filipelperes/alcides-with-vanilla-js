@@ -233,8 +233,6 @@ nav a:nth-child(2) {
 
 nav a:hover,
 .nav-selected {
-    -webkit-box-shadow: inset 0px 0px 3px 0px var(--secondary-color);
-    -moz-box-shadow: inset 0px 0px 3px 0px var(--secondary-color);
     box-shadow: inset 0px 0px 3px 0px var(--secondary-color);
 }
 
@@ -296,7 +294,7 @@ nav a:nth-child(3):hover {
 footer {
     background: var(--main-color);
     width: 100%;
-    padding: 1% 0;
+    padding: 2% 0;
     font-size: 0.7rem;
     margin-top: 5%;
 }
