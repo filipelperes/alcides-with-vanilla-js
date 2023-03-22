@@ -55,6 +55,21 @@
 }
 
 @media screen and (max-width: 550px) {
+    main {
+        margin-top: 5%;
+    }
+    .header-content {
+        top: 200px;
+    }
+    .header-content h1 {
+        font-size: 4.2rem;
+    }
+    .header-content h2 {
+        font-size: 1.7rem;
+    }
+    .header-content h3 {
+        font-size: 2.3rem;
+    }
     .menu-section,
     .menu-section-container,
     .title-cat,
@@ -65,9 +80,18 @@
     .menu-item {
         padding: 2% 0;
     }
+    .menu-logo {
+        padding: 5% 11%;
+    }
     .menu-logo img {
-        max-width: 100px;
-        margin: 0 27px;
+        position: absolute;
+        top: 250px;
+        left: 50%;
+        transform: translateX(-65%);
+        max-width: 150px;
+    }
+    .menu-logo a {
+        margin: 0 5%;
     }
     #restaurante .categoria:nth-child(2),
     #restaurante .categoria:nth-child(4),
@@ -148,37 +172,6 @@
     }
     .sobre-title>h3>span:last-child {
         top: -13px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    main {
-        margin-top: 5%;
-    }
-    .menu-logo {
-        padding: 5% 11%;
-    }
-    .menu-logo img {
-        position: absolute;
-        top: 250px;
-        left: 50%;
-        transform: translateX(-65%);
-        max-width: 150px;
-    }
-    .menu-logo a {
-        margin: 0 5%;
-    }
-    .header-content {
-        top: 200px;
-    }
-    .header-content h1 {
-        font-size: 4.2rem;
-    }
-    .header-content h2 {
-        font-size: 1.7rem;
-    }
-    .header-content h3 {
-        font-size: 2.3rem;
     }
     .social-item p {
         display: none;
