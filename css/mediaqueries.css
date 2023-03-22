@@ -52,6 +52,13 @@
         width: 100%;
         padding: 0;
     }
+    .menu-section:last-child {
+        flex-direction: column;
+    }
+    .menu-section:last-child>p:last-child {
+        font-weight: bold;
+        font-size: 1.17rem;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -105,8 +112,7 @@
         margin: 0;
     }
     #restaurante .menu-section:first-child>.menu-item-container,
-    .menu-content,
-    .menu-section:last-child {
+    .menu-content {
         flex-direction: column;
     }
     .menu-content>div:last-child p:last-child {
@@ -119,10 +125,6 @@
     }
     .menu-section {
         margin: 5% 0;
-    }
-    .menu-section:last-child>p:last-child {
-        font-weight: bold;
-        font-size: 1.17rem;
     }
     .content-even>.overlay>div {
         padding: 0 5%;
