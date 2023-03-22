@@ -65,8 +65,8 @@ export const removeClassList = (query, c) => { notNull(query) ? document.querySe
 //F5 FUNCTION
 export const fkey = (e) => {
     if (e.keyCode == 116) {
-        // e.preventDefault()
-        renderPage(lowercase(document.querySelector('.menu-selected').innerHTML));
+        renderPage(lowercase(document.querySelector('.${ getClass() }').innerHTML));
+        e.preventDefault();
     }
 };
 
