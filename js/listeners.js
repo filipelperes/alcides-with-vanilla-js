@@ -87,7 +87,6 @@ import {
     const stickyEffect = () => {
         if ($(window).scrollTop() > 70) {
             applyBgAfterScroll();
-            renderHoverInClass();
             applyCSS($('.button-social-container'), cssButtonSocialContainer());
             applyCSS($('.menu-logo'), cssMenuLogo());
             applyCSS($('.menu-logo>div img'), cssNavImg());
@@ -98,6 +97,7 @@ import {
             }
             addClassList('.menu-selected', 'menu-selected2');
             removeClassList('.menu-selected', 'menu-selected');
+            renderHoverInClass();
         } else {
             removeStyle($('.button-social-container'));
             removeStyle($('.social-container'));
