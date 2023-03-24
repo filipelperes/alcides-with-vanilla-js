@@ -1,7 +1,9 @@
-import { contentControl, renderPage } from './main.js';
+import { alertFadeOut, customAlert } from './customAlert.js';
+import { contentControl, renderChefContent, renderPage } from './main.js';
 import {
     animateNavMenu,
     animateSocialContainer,
+    applyCSS,
     cssButtonSocialContainer,
     cssHeader,
     cssHeaderContent,
@@ -17,19 +19,20 @@ import {
     cssSocialContainer,
     cssSocialItemPhone,
     removeStyle,
-    toggleDisplay
+    toggleDisplay,
 } from './styles.js';
 import {
-    addClass,
     addClassList,
-    applyCSS,
     fkey,
     getClass,
-    getText,
+    getWindowHeight,
+    getWindowWidth,
+    isSticky,
+    justLettersAndNumber,
     lowercase,
     menuListener,
     removeClassList,
-    setLink,
+    render,
     slideToggle,
     toggleClass
 } from './utils.js';
@@ -37,14 +40,37 @@ import {
 (($) => {
     //STICKY EFFECT
     let boolControlSticky = true;
+    let boolSlick = true;
     const arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 '];
     const btnSocialContainer = $('.button-social-container');
     const btnSocialContainerIcon = $('.button-social-container i');
     const btnMenu = $('.menu-sticky');
     const btnIcon = $('.menu-sticky i');
     const menuLogoLink = $('.menu-logo a');
+    const phoneClick = (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(justLettersAndNumber($('.phone p').text()));
+        customAlert('Telefone copiado para a area de transferência!');
+        $('button.active').click(alertFadeOut);
+        document.addEventListener('click', (e) => { if (($('#dialogbox') !== e.target && !$('#dialogbox').has(e.target).length)) alertFadeOut(); });
+    };
+    const titleCatClick = (e) => {
+        const target = e.currentTarget.className.split(' ');
+        const trigger = target[target.length - 1].split('-');
+        const icon = e.currentTarget.children[0].children[1];
+        if (icon.classList[icon.classList.length - 1] === 'fa-chevron-down') {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+        } else {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+
+        }
+        trigger.shift();
+        slideToggle($(`.container-${trigger.join('-')}`));
+    };
     const getSocialContainerWidth = () => { return $('.social-container').css('width'); };
-    const getSocialContainerLeft = () => { return $('.social-container').css('left'); };
+    const getChefsContainerDisplay = () => { return $('.chefs-container').css('display'); };
     const handleBool = (bool) => { return !bool; };
 
     const hideNavSticky = () => {
@@ -60,8 +86,8 @@ import {
     };
 
     const renderHoverInClass = () => {
-        applyCSS($('.menu-logo a '), cssLinkMenuLogo());
-        applyCSS($(`.${getClass()}`), cssHoverMenuLogo(getClass()));
+        applyCSS(menuLogoLink, cssLinkMenuLogo());
+        applyCSS($(`.${getClass()}`), cssHoverMenuLogo());
     };
 
     const applyBgAfterScroll = () => {
@@ -85,7 +111,7 @@ import {
         navSticky();
     };
     const stickyEffect = () => {
-        if ($(window).scrollTop() > 70) {
+        if (isSticky()) {
             applyBgAfterScroll();
             applyCSS($('.button-social-container'), cssButtonSocialContainer());
             applyCSS($('.menu-logo'), cssMenuLogo());
@@ -107,55 +133,42 @@ import {
             removeStyle($('.phone i'));
             removeStyle($('.phone p'));
             removeStyle($('.menu-logo'));
-            removeStyle($('.menu-logo a'));
+            removeStyle(menuLogoLink);
             removeStyle($('.menu-logo>div img'));
             removeStyle($('.menu-sticky'));
-            // applyCSS($('.menu-sticky'), toggleDisplay(false))
             removeStyle($('nav'));
-            // applyCSS($('nav'), cssDisplayFlex)
             removeStyle($('nav a'));
             removeStyle($('nav a:nth-child(2)'));
             removeStyle($('nav a:not(:last-child)'));
             removeStyle($('.header-content'));
             addClassList('.menu-selected2', 'menu-selected');
             removeClassList('.menu-selected2', 'menu-selected2');
-            if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark');
-            if ($('.button-social-container i').hasClass('fa-caret-left')) {
-                $('.button-social-container i').removeClass('fa-caret-left');
-                $('.button-social-container i').addClass('fa-caret-right');
-            }
+            if (btnIcon.hasClass('fa-xmark')) toggleClass(btnIcon, 'fa-xmark');
+            if (btnSocialContainerIcon.hasClass('fa-caret-left')) toggleClass(btnSocialContainerIcon, 'fa-caret-left');
             if (!boolControlSticky) boolControlSticky = handleBool(boolControlSticky);
         }
-        if ($(window).scrollTop() < 72) removeStyle($('header'));
-        if ($(window).width() < 551 && $(window).scrollTop() > 70) applyCSS($('.menu-logo>div'), toggleDisplay(false));
-        else removeStyle($('.menu-logo>div'));
-        if ($(`.${getClass()}`) !== null && getText($(`.${getClass()}`)) === 'Pizzaria') applyCSS($('.chefs-container'), toggleDisplay(false));
-        else removeStyle($('.chefs-container'));
+        if (getWindowHeight() < 72) removeStyle($('header'));
+        if (getWindowWidth() < 551 && isSticky()) {
+            applyCSS($('.menu-logo>div'), toggleDisplay(false));
+        } else removeStyle($('.menu-logo>div'));
+        if (getWindowWidth() < 551) {
+            $(document).on('click', '.title-cat', titleCatClick);
+            if (getChefsContainerDisplay() !== 'none' && boolSlick) {
+                $('.chef-content').slick({ zIndex: 0 });
+                boolSlick = handleBool(boolSlick);
+            }
+        } else {
+            if (getChefsContainerDisplay() !== 'none' && $('.chef-content').hasClass('slick-slider')) {
+                removeClassList('.slick-initialized', 'slick-initialized');
+                removeClassList('.slick-slider', 'slick-slider');
+                $('.chef-content').slick('unslick');
+                render(renderChefContent, document.querySelector('.chef-content'));
+                boolSlick = handleBool(boolSlick);
+            }
+            $('.phone').click(phoneClick);
+        }
     };
     //FIM STICKY EFFECT
-
-
-    //CUSTOM ALERT
-
-    const dialogOverlay = $('#dialogoverlay');
-    const dialogBoxHead = $('#dialogboxhead');
-    const dialogBoxBody = $('#dialogboxbody');
-    const dialogBoxFoot = $('#dialogboxfoot');
-    const alertFadeIn = () => { dialogOverlay.fadeIn(); };
-    const alertFadeOut = () => { dialogOverlay.fadeOut(); };
-    const customAlert = (message, title) => {
-        if (typeof title !== 'undefined') {
-            displayJ(dialogBoxHead, 'block');
-            dialogBoxHead.html(`<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ${title}`);
-        }
-        dialogBoxBody.html(message);
-        dialogBoxFoot.html('<button class="pure-material-button-contained active border-radius">OK</button>');
-        alertFadeIn();
-    };
-
-    //FIM CUSTOM ALERT
-
-    let screen = $(window).width();
 
     //WINDOW EFFECTS
     stickyEffect();
@@ -165,34 +178,6 @@ import {
     $(window).resize(menuListener);
     $(window).scroll(contentControl);
     $(window).resize(contentControl);
-    window.onresize = (e) => { screen = $(window).width(); };
-
-    //BREAKPOINTS
-    if (screen > 767) {
-        $('a.phone').on('click', ((e) => {
-            navigator.clipboard.writeText(getText($('.phone')));
-            customAlert('Telefone copiado para a area de transferência!');
-            $('button.active').click(() => { alertFadeOut(); });
-        }));
-    } else setLink('a.phone', `tel:${getText($('.phone'))}`);
-
-    if (screen < 551) {
-        $(document).on('click', '.title-cat', ((e) => {
-            const target = e.currentTarget.className.split(' ');
-            const trigger = target[target.length - 1].split('-');
-            const icon = e.currentTarget.children[0].children[1];
-            if (icon.classList[icon.classList.length - 1] === 'fa-chevron-down') {
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            } else {
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-
-            }
-            trigger.shift();
-            slideToggle($(`.container-${trigger.join('-')}`));
-        }));
-    }
 
     btnSocialContainer.on('click', (e) => {
         const socialContainer = $('.social-container');
@@ -205,14 +190,14 @@ import {
         e.stopPropagation();
         slideToggle($('nav'));
         toggleClass(btnIcon, 'fa-xmark');
-        document.addEventListener('click', (e) => { if (($('nav') !== e.target && !$('nav').has(e.target).length) || $(window).scrollTop() > 70) hideNavSticky(); });
+        document.addEventListener('click', (e) => { if (($('nav') !== e.target && !$('nav').has(e.target).length) || getWindowHeight() > 70) hideNavSticky(); });
     }));
 
     //MENU LOGO LINK CLICK    
     menuLogoLink.on({
         mouseenter: (e) => {
             const target = e.currentTarget.className.split('-');
-            applyCSS($(`.menu-logo-${target[target.length - 1]}`), cssHoverMenuLogo(getClass()));
+            applyCSS($(`.menu-logo-${target[target.length - 1]}`), cssHoverMenuLogo());
         },
         mouseleave: (e) => {
             const target = e.currentTarget.className.split('-');
@@ -222,10 +207,10 @@ import {
         click: (e) => {
             const target = lowercase(e.currentTarget.innerHTML);
             $(`.${getClass()}`).removeClass(getClass());
-            addClass($(`.menu-logo .menu-logo-${target}`), getClass());
+            $(`.menu-logo .menu-logo-${target}`).addClass(getClass());
             renderPage(target);
             removeStyle($(`.menu-logo-${target === 'pizzaria' ? "restaurante" : "pizzaria"}`));
-            if ($(window).scrollTop() > 70) {
+            if (isSticky()) {
                 navSticky();
                 renderHoverInClass();
             }
@@ -237,7 +222,7 @@ import {
         const target = lowercase(e.currentTarget.className.split('-')[0]);
         removeClassList('.nav-selected', 'nav-selected');
         $('html, body').animate(animateNavMenu(target), 1700);
-        if ($(window).scrollTop() > 70) hideNavSticky();
+        if (isSticky()) hideNavSticky();
     }));
 })(jQuery);
 

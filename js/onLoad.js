@@ -1,11 +1,9 @@
-import { contentControl, renderPage } from './main.js';
-import { addClassList, menuListener } from './utils.js';
+import { renderPage } from './main.js';
+import { addClassList, getClass, menuListener } from './utils.js';
 
 (() => {
-    if (document.querySelector('.menu-selected') === null) addClassList(`.menu-logo-restaurante`, 'menu-selected');
-    renderPage(document.querySelector('.menu-selected').innerHTML.toLowerCase() || 'restaurante');
+    if (document.querySelector(`.${getClass()}`) === null) addClassList(`.menu-logo-restaurante`, `${getClass()}`);
+    renderPage();
 })();
 
-
 window.onload = menuListener;
-window.onload = contentControl;

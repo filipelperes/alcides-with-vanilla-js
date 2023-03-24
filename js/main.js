@@ -1,12 +1,10 @@
 import { renderCardapio } from './cardapio.js';
 import { dataPizzaria, dataRestaurante } from './data.js';
 import { renderHeader } from './header.js';
-import { applyImg, applyMargin } from './styles.js';
-import { bool, menuListener, notNull, render } from './utils.js';
+import { applyCSS, applyImg, applyMargin, removeStyle } from './styles.js';
+import { bool, getPage, getWindowWidth, menuListener, render } from './utils.js';
 
-let img, img2, d;
-
-const getWindowWidth = () => { return window.innerWidth; };
+let img, img2, margin;
 
 const renderSobreTitle = (v) => {
     return `<h3>
@@ -72,34 +70,48 @@ const renderContentEven = ({ contentEven }) => {
             </div>`;
 };
 
-export const contentControl = (page = notNull(`.${getClass()}`) ? document.querySelector(`.${getClass()}`).innerHTML.toLowerCase() : false) => {
+export const renderChefContent = `<div class="chef-card flex column">
+                                <img src="imgs/chef-alcides.png" alt="">
+                                <p class="name">Alcy Leite</p>
+                                <p class="desc">Chef e fundador</p>
+                            </div>
+                            <div class="chef-card flex column">
+                                <img src="imgs/chef-marilda.png" alt="">
+                                <p class="name">Marilda Leite</p>
+                                <p class="desc">Chef</p>
+                            </div>`;
+
+export const contentControl = (page = getPage()) => {
     if (bool(page)) {
         img = 'bgtomate';
         img2 = 'bgfornoalenha';
-        applyMargin('main>.container>div:nth-child(2)', `5%`);
+        margin = `5%`;
+        applyCSS($('.chefs-container'), toggleDisplay(false));
     } else {
         img = 'bgingredientes';
         img2 = 'bgfeijoada';
-        applyMargin('main>.container>div:nth-child(2)', `${(getWindowWidth() <= 550) ? '0'
+        margin = `${(getWindowWidth() <= 550) ? '0'
             : (getWindowWidth() <= 850) ? '-30%'
                 : (getWindowWidth() <= 900) ? '-29%'
                     : (getWindowWidth() <= 1000) ? '-27%'
-                        : (getWindowWidth() < 1200) ? '-23%' : '-17%'}`);
+                        : (getWindowWidth() < 1200) ? '-23%' : '-17%'}`;
         applyMargin('.section-content:nth-child(2)', `${(getWindowWidth() <= 700) ? '5%' : '0'}`);
+        removeStyle($('.chefs-container'));
     }
 
-
+    applyMargin('main>.container>div:nth-child(2)', margin);
     applyImg(`main>.container>div:nth-child(2)`, img);
     applyImg(`main>.container>div:nth-child(4)`, img2);
 };
 
-export const renderPage = (page) => {
+export const renderPage = (page = getPage()) => {
     const data = !bool(page) ? dataRestaurante() : dataPizzaria();
     renderHeader(page, data);
     render(renderCardapio(page, data), document.querySelector('.menu-container'));
     render(renderSobreTitle(page), document.querySelector('.sobre-title'));
     render(renderSobreContent(page, data), document.querySelector('.sobre-content'));
     render(renderContentEven(data), document.querySelector('main>.container>div:nth-child(4)'));
-    contentControl(page);
+    if (!bool(page)) render(renderChefContent, document.querySelector('.chef-content'));
+    contentControl();
     menuListener();
 };

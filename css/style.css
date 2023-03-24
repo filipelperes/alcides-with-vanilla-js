@@ -186,6 +186,13 @@ header {
     margin-top: 7px;
 }
 
+header .menu-logo,
+header nav,
+.button-social-container,
+.menu-sticky {
+    z-index: 100;
+}
+
 .menu-logo {
     padding: 7px 5%;
 }
@@ -336,7 +343,6 @@ header>.menu-sticky i,
     transform: translate(-50%, -50%);
     font-size: 3rem;
     text-shadow: none;
-    z-index: 100 !important;
 }
 
 .nav-selected {

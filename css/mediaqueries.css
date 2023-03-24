@@ -184,4 +184,24 @@
         padding-right: 0;
         border-right: 0;
     }
+    .chef-content {
+        padding: 0 11%;
+    }
+    .chef-content button {
+        display: block;
+    }
+    .chef-content>.slick-arrow::before,
+    .chef-content>.slick-arrow::after {
+        color: black;
+        font-size: 2.5rem;
+    }
+    .chef-content>.slick-arrow {
+        color: transparent;
+    }
+    .chef-content>.slick-prev {
+        left: 7px;
+    }
+    .chef-content>.slick-next {
+        right: 27px;
+    }
 }

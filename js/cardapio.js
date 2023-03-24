@@ -1,55 +1,32 @@
 import { bool, fixTitle } from './utils.js';
 
-const renderMenuTitle = `<div class="menu-title title flex column">
-                            <h3>
-                                <span>Nosso</span>
-                                <span>Menu</span>
-                            </h3>
-                            <span><i class="fa-solid fa-book-open"></i></span>
-                        </div>`;
-
-const renderTitleCat = (title) => {
+const renderCategoria = (title, arr) => {
     return `<div class="title-cat flex column trigger-${title}">
                 <div class="flex">
                     <h4>${fixTitle(title)}</h4>
                     <i class="fa-solid fa-chevron-up"></i>
                 </div>
                 <span></span>
-            </div>`;
-};
-
-const renderMenuItem = ({ title, desc }) => {
-    return `<div class="menu-item">
-                <p class="menu-item-title">${title}</p>
-                <p class="menu-item-desc">${desc}</p>
-            </div>`;
-};
-
-const renderCategoria = (title, arr) => {
-    const bool = title === "pratos-da-casa";
-    return `${renderTitleCat(title)}
-            <div class="menu-item-container flex ${bool ? "" : "column"} container-${title}">
+            </div>
+            <div class="menu-item-container flex ${title === "pratos-da-casa" ? "" : "column"} container-${title}">
                 ${arr.map(val => {
-        return renderMenuItem(val);
+        const { title: t, desc } = val;
+        return `<div class="menu-item">
+                                <p class="menu-item-title">${t}</p>
+                                <p class="menu-item-desc">${desc}</p>
+                            </div>`;
     }).join("")}
             </div>`;
 };
 
-const renderLastMenuSection = (val) => {
-    return `<div class="menu-section flex">
-                <p>E mais...</p>
-                <p>${val}</p>
-            </div>`;
-};
-
-const menuSectionPizzaria = (aux) => {
+const renderMenuSectionPizzaria = (aux) => {
     return `<div class="menu-section categoria flex column">
                 ${aux}
             </div>`;
 };
 
 const renderMenuSection = (val, arr, page, aux) => {
-    return `${bool(page) ? menuSectionPizzaria(aux) : ""}
+    return `${bool(page) ? renderMenuSectionPizzaria(aux) : ""}
             <div class="menu-section categoria flex column">
                 ${renderCategoria(val, arr)}
             </div>`;
@@ -57,7 +34,13 @@ const renderMenuSection = (val, arr, page, aux) => {
 
 export const renderCardapio = (page, { cardapio }) => {
     const { "E mais...": more, ...obj } = cardapio;
-    return `${renderMenuTitle}
+    return `<div class="menu-title title flex column">
+                <h3>
+                    <span>Nosso</span>
+                    <span>Menu</span>
+                </h3>
+                <span><i class="fa-solid fa-book-open"></i></span>
+            </div>
                 <div id="${page}" class="menu-content flex">
                     ${((ob) => {
             let html = "";
@@ -70,6 +53,9 @@ export const renderCardapio = (page, { cardapio }) => {
             });
             return html;
         })(obj)}
-                    ${renderLastMenuSection(more)}
+        <div class="menu-section flex">
+        <p>E mais...</p>
+        <p>${more}</p>
+    </div>
                 </div>`;
 };

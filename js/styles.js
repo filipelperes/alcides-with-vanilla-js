@@ -1,5 +1,6 @@
+import { getClass, getOffSetTop, getWindowHeight, getWindowWidth, isMain, isSticky, notNull } from './utils.js';
+
 //JQUERY
-export const dislpayJ = (el, v) => { el.css('display', v); };
 
 export const toggleDisplay = (bool) => {
     return {
@@ -7,14 +8,13 @@ export const toggleDisplay = (bool) => {
     };
 };
 
+export const applyCSS = (el, obj) => { el.css(obj); };
+
 export const removeStyle = (el) => { el.removeAttr('style'); };
 
-const isMain = () => { return window.scrollY > document.querySelector('main').offsetTop; };
-const isStickyBeforeMain = () => { return window.scrollY > 70 && window.scrollY < document.querySelector('main').offsetTop; };
-
-export const cssHoverMenuLogo = (classe) => {
+export const cssHoverMenuLogo = () => {
     const color = isMain() ? 'secondary' : 'main';
-    return classe === 'menu-selected2' ? {
+    return getClass() === 'menu-selected2' ? {
         'color': `var(--${color}-color)`,
         'border-bottom': `7px solid var(--${color}-color)`,
         'border-top': `7px solid var(--${color}-color)`,
@@ -25,7 +25,7 @@ export const cssHoverMenuLogo = (classe) => {
 };
 
 export const cssLinkMenuLogo = () => {
-    const color = isStickyBeforeMain() ? 'fourth-color'
+    const color = isSticky() && getWindowHeight() < getOffSetTop('main') ? 'fourth-color'
         : isMain() ? 'secondary-border'
             : 'secondary-color';
     return {
@@ -61,21 +61,20 @@ export const cssSocialContainer = (width) => {
 };
 
 export const cssButtonSocialContainer = () => {
-
     return {
-        'background': `var(--${window.scrollY > (document.querySelector('main').offsetTop / 2) ? 'footer' : 'secondary'}-border)`,
+        'background': `var(--${getWindowHeight() > (getOffSetTop('main') / 2) ? 'footer' : 'secondary'}-border)`,
     };
 };
 
 export const cssNavImg = () => {
-    return { 'max-width': `${window.innerWidth < 551 ? '70px' : '127px'}` };
+    return { 'max-width': `${getWindowWidth() < 551 ? '70px' : '127px'}` };
 };
 
 export const cssHeaderContent = () => {
     return {
         'position': 'relative',
-        'top': `${window.innerWidth < 551 ? '40%'
-            : window.innerWidth < 410 ? '20%'
+        'top': `${getWindowWidth() < 551 ? '40%'
+            : getWindowWidth() < 410 ? '20%'
                 : '55%'}`,
     };
 };
@@ -110,7 +109,6 @@ export const cssNav = {
     'flex-direction': 'column',
     'border': '1px solid var(--footer-border)',
     'text-shadow': 'none',
-    'z-index': '999',
     'background': 'var(--secondary-border)',
 };
 
@@ -127,21 +125,18 @@ export const cssNavLinkSecond = {
 };
 export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-border)', };
 
-export const cssDisplayFlex = { 'display': 'flex', };
-
 export const animateSocialContainer = (width) => {
     return {
-        left: document.querySelector('.social-container') !== null && document.querySelector('.social-container').style.left < '0px' ?
-            `${window.innerWidth < 551 ? (parseInt(width) + 27) : parseInt(width)}`
+        left: notNull('.social-container') && document.querySelector('.social-container').style.left < '0px' ?
+            `${getWindowWidth() < 551 ? (parseInt(width) + 27) : parseInt(width)}`
             : `-${parseInt(width) * 2}`
     };
 };
 
-
 export const animateNavMenu = (target) => {
-    return { scrollTop: (document.querySelector(`.${target}-container`).offsetTop) + 50 };
+    return { scrollTop: getOffSetTop(`.${target}-container`) + 50 };
 };
 
 //VANILLA JS
-export const applyImg = (query, val) => { document.querySelector(query) !== null ? document.querySelector(query).style.backgroundImage = `url(imgs/${val}.png)` : false; };
-export const applyMargin = (query, val) => { document.querySelector(query) !== null ? document.querySelector(query).style.marginTop = val : false; };
+export const applyImg = (query, val) => { notNull(query) ? document.querySelector(query).style.backgroundImage = `url(imgs/${val}.png)` : false; };
+export const applyMargin = (query, val) => { notNull(query) ? document.querySelector(query).style.marginTop = val : false; };
