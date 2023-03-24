@@ -1,4 +1,4 @@
-import { alertFadeOut, customAlert } from './customAlert.js';
+import { customAlert } from './customAlert.js';
 import { contentControl, renderChefContent, renderPage } from './main.js';
 import {
     animateNavMenu,
@@ -19,7 +19,7 @@ import {
     cssSocialContainer,
     cssSocialItemPhone,
     removeStyle,
-    toggleDisplay,
+    toggleDisplay
 } from './styles.js';
 import {
     addClassList,
@@ -41,6 +41,7 @@ import {
     //STICKY EFFECT
     let boolControlSticky = true;
     let boolSlick = true;
+    let boolEventListener = true;
     const arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 '];
     const btnSocialContainer = $('.button-social-container');
     const btnSocialContainerIcon = $('.button-social-container i');
@@ -49,10 +50,11 @@ import {
     const menuLogoLink = $('.menu-logo a');
     const phoneClick = (e) => {
         e.preventDefault();
-        navigator.clipboard.writeText(justLettersAndNumber($('.phone p').text()));
         customAlert('Telefone copiado para a area de transferência!');
-        $('button.active').click(alertFadeOut);
-        document.addEventListener('click', (e) => { if (($('#dialogbox') !== e.target && !$('#dialogbox').has(e.target).length)) alertFadeOut(); });
+        navigator.clipboard.writeText(justLettersAndNumber($('.phone p').text()));
+        $('#dialogoverlay').fadeIn();
+        $(document).on('click', '.button-active', (e) => { $('#dialogoverlay').fadeOut(); });
+        setTimeout(() => { $('#dialogoverlay').fadeOut(); }, 1700);
     };
     const titleCatClick = (e) => {
         const target = e.currentTarget.className.split(' ');
@@ -151,21 +153,24 @@ import {
         if (getWindowWidth() < 551 && isSticky()) {
             applyCSS($('.menu-logo>div'), toggleDisplay(false));
         } else removeStyle($('.menu-logo>div'));
-        if (getWindowWidth() < 551) {
+        if (getWindowWidth() < 551 && getChefsContainerDisplay() !== 'none' && boolSlick) {
+            $('.chef-content').slick({ zIndex: 0 });
+            boolSlick = handleBool(boolSlick);
+        }
+        if (getWindowWidth() > 550 && getChefsContainerDisplay() !== 'none' && $('.chef-content').hasClass('slick-slider') && !boolSlick) {
+            removeClassList('.slick-initialized', 'slick-initialized');
+            removeClassList('.slick-slider', 'slick-slider');
+            $('.chef-content').slick('unslick');
+            render(renderChefContent, document.querySelector('.chef-content'));
+            boolSlick = handleBool(boolSlick);
+        }
+        if (getWindowWidth() > 550 && boolEventListener) {
+            $(document).on('click', '.phone', phoneClick);
+            boolEventListener = handleBool(boolEventListener);
+        }
+        if (getWindowWidth() < 551 && !boolEventListener) {
             $(document).on('click', '.title-cat', titleCatClick);
-            if (getChefsContainerDisplay() !== 'none' && boolSlick) {
-                $('.chef-content').slick({ zIndex: 0 });
-                boolSlick = handleBool(boolSlick);
-            }
-        } else {
-            if (getChefsContainerDisplay() !== 'none' && $('.chef-content').hasClass('slick-slider')) {
-                removeClassList('.slick-initialized', 'slick-initialized');
-                removeClassList('.slick-slider', 'slick-slider');
-                $('.chef-content').slick('unslick');
-                render(renderChefContent, document.querySelector('.chef-content'));
-                boolSlick = handleBool(boolSlick);
-            }
-            $('.phone').click(phoneClick);
+            boolEventListener = handleBool(boolEventListener);
         }
     };
     //FIM STICKY EFFECT

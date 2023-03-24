@@ -1,7 +1,7 @@
 import { renderCardapio } from './cardapio.js';
 import { dataPizzaria, dataRestaurante } from './data.js';
 import { renderHeader } from './header.js';
-import { applyCSS, applyImg, applyMargin, removeStyle } from './styles.js';
+import { applyImg, applyMargin, removeAttrStyle } from './styles.js';
 import { bool, getPage, getWindowWidth, menuListener, render } from './utils.js';
 
 let img, img2, margin;
@@ -86,7 +86,7 @@ export const contentControl = (page = getPage()) => {
         img = 'bgtomate';
         img2 = 'bgfornoalenha';
         margin = `5%`;
-        applyCSS($('.chefs-container'), toggleDisplay(false));
+        document.querySelector('.chefs-container').style.display = 'none';
     } else {
         img = 'bgingredientes';
         img2 = 'bgfeijoada';
@@ -96,7 +96,7 @@ export const contentControl = (page = getPage()) => {
                     : (getWindowWidth() <= 1000) ? '-27%'
                         : (getWindowWidth() < 1200) ? '-23%' : '-17%'}`;
         applyMargin('.section-content:nth-child(2)', `${(getWindowWidth() <= 700) ? '5%' : '0'}`);
-        removeStyle($('.chefs-container'));
+        removeAttrStyle('.chefs-container');
     }
 
     applyMargin('main>.container>div:nth-child(2)', margin);

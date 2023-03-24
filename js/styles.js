@@ -140,3 +140,4 @@ export const animateNavMenu = (target) => {
 //VANILLA JS
 export const applyImg = (query, val) => { notNull(query) ? document.querySelector(query).style.backgroundImage = `url(imgs/${val}.png)` : false; };
 export const applyMargin = (query, val) => { notNull(query) ? document.querySelector(query).style.marginTop = val : false; };
+export const removeAttrStyle = (query) => { document.querySelector(query).removeAttribute('style'); };
