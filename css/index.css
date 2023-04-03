@@ -151,7 +151,7 @@ nav.menu {
     margin: 7px 0;
     width: 100%;
     max-width: 400px;
-    border: 1px solid var(--secondary-border);
+    border: 1px solid var(--secondary-light);
 }
 
 nav a {
@@ -162,8 +162,8 @@ nav a {
 }
 
 nav a:nth-child(2) {
-    border-left: 1px solid var(--secondary-border);
-    border-right: 1px solid var(--secondary-border);
+    border-left: 1px solid var(--secondary-light);
+    border-right: 1px solid var(--secondary-light);
 }
 
 nav a:hover,
