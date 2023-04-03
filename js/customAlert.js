@@ -1,4 +1,3 @@
-
 const dialogBoxHead = document.querySelector('#dialogboxhead');
 const dialogBoxBody = document.querySelector('#dialogboxbody');
 const dialogBoxFoot = document.querySelector('#dialogboxfoot');

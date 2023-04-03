@@ -32,8 +32,8 @@ export const render = (template, elem) => {
 
 
 //STRINGS
-export const lowercase = (str) => { return str.charAt(0).toLowerCase() + str.slice(1); };
-export const justLettersAndNumber = (str) => { return str.replace(/[^\w]/g, ""); };
+export const lowercase = (str) => str.charAt(0).toLowerCase() + str.slice(1);
+export const justLettersAndNumber = (str) => str.replace(/[^\w]/g, "");
 export const fixTitle = (str) => {
     return str.split('-').map((val, i) => {
         const bool = str.split('-').length > 2 && i > 0 || (i === 1 && val.length < 3);
@@ -45,48 +45,38 @@ export const fixTitle = (str) => {
 
 
 //BOOLEAN
-export const bool = (page) => { return page === 'pizzaria'; };
-export const notNull = (query) => { return document.querySelector(query) !== null; };
+export const bool = (page) => page === 'pizzaria';
+export const notNull = (query) => document.querySelector(query) !== null;
 
 //GETTERS
 //Window Height
-export const getWindowHeight = () => { return window.scrollY; };
+export const getWindowHeight = () => window.scrollY;
 //Window Width
-export const getWindowWidth = () => { return window.innerWidth; };
+export const getWindowWidth = () => window.innerWidth;
 //offsetTop from element
-export const getOffSetTop = (query) => { return document.querySelector(query).offsetTop; };
+export const getOffSetTop = (query) => document.querySelector(query).offsetTop;
 
 // IS STICKY
-export const isSticky = () => { return getWindowHeight() > 70; };
+export const isSticky = () => getWindowHeight() > 70;
 //Get Class
-export const getClass = () => { return isSticky() ? 'menu-selected2' : 'menu-selected'; };
-export const getPage = () => { return notNull(`.${getClass()}`) ? lowercase(document.querySelector(`.${getClass()}`).innerHTML) : false; };
+export const getClass = () => isSticky() ? 'menu-selected2' : 'menu-selected';
 
 //BOOLS
-export const isMain = () => { return getWindowHeight() > getOffSetTop('main'); };
+export const isMain = () => getWindowHeight() > getOffSetTop('main');
 
 
 //SETTERS
 //set href attr
-export const setLink = (query, val) => { return document.querySelector(query).href = val; };
+export const setLink = (query, val) => document.querySelector(query).href = val;
 
 
 //JQUERY
-export const toggleClass = (el, c) => { el.toggleClass(c); };
-export const slideToggle = (el) => { el.slideToggle(); };
+export const toggleClass = (el, c) => el.toggleClass(c);
+export const slideToggle = (el) => el.slideToggle();
 
 //VANILLA JS
-export const addClassList = (query, c) => { notNull(query) ? document.querySelector(query).classList.add(c) : false; };
-export const removeClassList = (query, c) => { notNull(query) ? document.querySelector(query).classList.remove(c) : false; };
-
-//F5 FUNCTION
-export const fkey = (e) => {
-    if (e.keyCode == 116) {
-        e.preventDefault();
-        renderPage(lowercase(document.querySelector(`.${getClass()}`).innerHTML));
-    }
-};
-
+export const addClassList = (query, c) => notNull(query) ? document.querySelector(query).classList.add(c) : false;
+export const removeClassList = (query, c) => notNull(query) ? document.querySelector(query).classList.remove(c) : false;
 
 //MARCANDO MENU CONFORME A DIV QUE ESTÁ NA TELA
 const controlNav = (page, isMenu, isSobre, isChef) => {
@@ -95,8 +85,7 @@ const controlNav = (page, isMenu, isSobre, isChef) => {
     if (!bool(page) && isChef) addClassList('.Chefs-link', 'nav-selected');
 };
 
-
-export const menuListener = (page = getPage()) => {
+export const menuListener = (page = lowercase(document.querySelector(`.${getClass()}`).innerHTML)) => {
     let isMenu, isSobre, isChef;
     removeClassList('.nav-selected', 'nav-selected');
     isMenu = getWindowHeight() > getOffSetTop('.menu-container') && getWindowHeight() < getOffSetTop('.menu-container+div');

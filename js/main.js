@@ -2,9 +2,7 @@ import { renderCardapio } from './cardapio.js';
 import { dataPizzaria, dataRestaurante } from './data.js';
 import { renderHeader } from './header.js';
 import { applyImg, applyMargin, removeAttrStyle } from './styles.js';
-import { bool, getPage, getWindowWidth, menuListener, render } from './utils.js';
-
-let img, img2, margin;
+import { bool, getClass, getWindowWidth, lowercase, menuListener, render } from './utils.js';
 
 const renderSobreTitle = (v) => {
     return `<h3>
@@ -81,7 +79,9 @@ export const renderChefContent = `<div class="chef-card flex column">
                                 <p class="desc">Chef</p>
                             </div>`;
 
-export const contentControl = (page = getPage()) => {
+export const contentControl = () => {
+    let img, img2, margin;
+    const page = lowercase(document.querySelector(`.${getClass()}`).innerHTML);
     if (bool(page)) {
         img = 'bgtomate';
         img2 = 'bgfornoalenha';
@@ -102,9 +102,12 @@ export const contentControl = (page = getPage()) => {
     applyMargin('main>.container>div:nth-child(2)', margin);
     applyImg(`main>.container>div:nth-child(2)`, img);
     applyImg(`main>.container>div:nth-child(4)`, img2);
+    console.log(page);
+    console.log(!bool(page));
 };
 
-export const renderPage = (page = getPage()) => {
+export const renderPage = () => {
+    const page = lowercase(document.querySelector(`.${getClass()}`).innerHTML);
     const data = !bool(page) ? dataRestaurante() : dataPizzaria();
     renderHeader(page, data);
     render(renderCardapio(page, data), document.querySelector('.menu-container'));

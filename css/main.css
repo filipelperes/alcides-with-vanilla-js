@@ -309,7 +309,7 @@ main .container>div {
 
 .chef-card {
     width: 47%;
-    border: 3px solid var(--main-box-shadow);
+    border: 3px solid var(--main-lighter);
     text-align: center;
 }
 

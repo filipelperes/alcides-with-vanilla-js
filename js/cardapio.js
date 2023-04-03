@@ -42,17 +42,17 @@ export const renderCardapio = (page, { cardapio }) => {
                 <span><i class="fa-solid fa-book-open"></i></span>
             </div>
                 <div id="${page}" class="menu-content flex">
-                    ${((ob) => {
+                    ${(() => {
             let html = "";
             let aux = "";
-            Object.keys(ob).forEach((val, i) => {
+            Object.keys(obj).forEach((val, i) => {
                 bool(page) && i < 2 ? aux += `<div class="menu-section-container">
-                                                                ${renderCategoria(val, ob[val])}
-                                                            </div>`
+                                                    ${renderCategoria(val, obj[val])}
+                                                </div>`
                     : html += renderMenuSection(val, ob[val], page, aux);
             });
             return html;
-        })(obj)}
+        })()}
         <div class="menu-section flex">
         <p>E mais...</p>
         <p>${more}</p>

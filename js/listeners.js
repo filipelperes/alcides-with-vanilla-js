@@ -23,7 +23,6 @@ import {
 } from './styles.js';
 import {
     addClassList,
-    fkey,
     getClass,
     getWindowHeight,
     getWindowWidth,
@@ -38,60 +37,32 @@ import {
 } from './utils.js';
 
 (($) => {
-    //STICKY EFFECT
-    let boolControlSticky = true;
-    let boolSlick = true;
-    let boolEventListener = true;
-    const arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 '];
-    const btnSocialContainer = $('.button-social-container');
-    const btnSocialContainerIcon = $('.button-social-container i');
-    const btnMenu = $('.menu-sticky');
-    const btnIcon = $('.menu-sticky i');
-    const menuLogoLink = $('.menu-logo a');
-    const phoneClick = (e) => {
-        e.preventDefault();
-        customAlert('Telefone copiado para a area de transferência!');
-        navigator.clipboard.writeText(justLettersAndNumber($('.phone p').text()));
-        $('#dialogoverlay').fadeIn();
-        $(document).on('click', '.button-active', (e) => { $('#dialogoverlay').fadeOut(); });
-        setTimeout(() => { $('#dialogoverlay').fadeOut(); }, 1700);
-    };
-    const titleCatClick = (e) => {
-        const target = e.currentTarget.className.split(' ');
-        const trigger = target[target.length - 1].split('-');
-        const icon = e.currentTarget.children[0].children[1];
-        if (icon.classList[icon.classList.length - 1] === 'fa-chevron-down') {
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-up');
-        } else {
-            icon.classList.remove('fa-chevron-up');
-            icon.classList.add('fa-chevron-down');
-
-        }
-        trigger.shift();
-        slideToggle($(`.container-${trigger.join('-')}`));
-    };
+    //UTILS
     const getSocialContainerWidth = () => { return $('.social-container').css('width'); };
     const getChefsContainerDisplay = () => { return $('.chefs-container').css('display'); };
     const handleBool = (bool) => { return !bool; };
 
+    //STICKY EFFECT BOOLS
+    let boolControlSticky = true;
+    let boolSlick = true;
+    let boolPhone = true;
+    let boolTitleCat = true;
+
+    //STICKY EFFECT CONTROLS
     const hideNavSticky = () => {
         applyCSS($('nav'), toggleDisplay(false));
         if (btnIcon.hasClass('fa-xmark')) btnIcon.removeClass('fa-xmark');
     };
-
     const navSticky = () => {
         applyCSS($('nav'), cssNav);
         applyCSS($('nav a'), cssNavLink);
         applyCSS($('nav a:nth-child(2)'), cssNavLinkSecond);
         applyCSS($('nav a:not(:last-child)'), cssNavLinkNotLast);
     };
-
     const renderHoverInClass = () => {
         applyCSS(menuLogoLink, cssLinkMenuLogo());
         applyCSS($(`.${getClass()}`), cssHoverMenuLogo());
     };
-
     const applyBgAfterScroll = () => {
         $('.social-container a:nth-child(1)').css('background', arr[0]);
         $('.social-container a:nth-child(2)').css('background', arr[1]);
@@ -100,7 +71,6 @@ import {
         $('.social-container a:nth-child(5)').css('background', arr[3]);
         applyCSS($('.social-container a i'), { 'color': '#fff' });
     };
-
     const renderOnceTime = () => {
         applyCSS($('.button-social-container'), toggleDisplay(true));
         applyCSS($('.social-container'), cssSocialContainer(getSocialContainerWidth()));
@@ -112,6 +82,64 @@ import {
         applyCSS($('nav'), toggleDisplay(false));
         navSticky();
     };
+
+
+    //COLORS SOCIALS ICONS
+    const arr = ['#0053C2', '#ea4335', '#4267B2', '#25d366 '];
+
+    //ELEMENTOS
+    const btnSocialContainer = $('.button-social-container');
+    const btnSocialContainerIcon = $('.button-social-container i');
+    const btnMenu = $('.menu-sticky');
+    const btnIcon = $('.menu-sticky i');
+    const menuLogoLink = $('.menu-logo a');
+
+    //FUNCTIONS CLICKS
+    const phoneClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        customAlert('Telefone copiado para a area de transferência!');
+        navigator.clipboard.writeText(justLettersAndNumber($('.phone p').text()));
+        $('#dialogoverlay').fadeIn();
+        $(document).on('click', '.button-active', (e) => { $('#dialogoverlay').fadeOut(); });
+        setTimeout(() => { $('#dialogoverlay').fadeOut(); }, 1700);
+    };
+    const titleCatClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const target = e.currentTarget.className.split(' ');
+        const trigger = target[target.length - 1].split('-');
+        const icon = e.currentTarget.children[0].children[1];
+        if (icon.classList[icon.classList.length - 1] === 'fa-chevron-down') {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+        } else {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+        }
+        trigger.shift();
+        slideToggle($(`.container-${trigger.join('-')}`));
+    };
+    const btnSocialClick = (e) => {
+        const socialContainer = $('.social-container');
+        toggleClass(btnSocialContainerIcon, 'fa-caret-left');
+        socialContainer.animate(animateSocialContainer(getSocialContainerWidth()), 700);
+    };
+    const btnMenuClick = (e) => {
+        e.stopPropagation();
+        slideToggle($('nav'));
+        toggleClass(btnIcon, 'fa-xmark');
+        document.addEventListener('click', (e) => { if (($('nav') !== e.target && !$('nav').has(e.target).length) || getWindowHeight() > 70) hideNavSticky(); });
+    };
+    const navMenuClick = (e) => {
+        const target = lowercase(e.currentTarget.className.split('-')[0]);
+        removeClassList('.nav-selected', 'nav-selected');
+        $('html, body').animate(animateNavMenu(target), 1700);
+        if (isSticky()) hideNavSticky();
+    };
+
+
+    //START STICKY EFFECT
     const stickyEffect = () => {
         if (isSticky()) {
             applyBgAfterScroll();
@@ -164,16 +192,22 @@ import {
             render(renderChefContent, document.querySelector('.chef-content'));
             boolSlick = handleBool(boolSlick);
         }
-        if (getWindowWidth() > 550 && boolEventListener) {
-            $(document).on('click', '.phone', phoneClick);
-            boolEventListener = handleBool(boolEventListener);
+        if (getWindowWidth() < 551 && !boolPhone) {
+            $(document).off('click', '.phone', phoneClick);
+            boolPhone = handleBool(boolPhone);
+        } else {
+            $('.phone').on('click', phoneClick);
+            boolPhone = handleBool(boolPhone);
         }
-        if (getWindowWidth() < 551 && !boolEventListener) {
+        if (getWindowWidth() > 550 && !boolTitleCat) {
+            $(document).off('click', '.title-cat', titleCatClick);
+            boolTitleCat = handleBool(boolTitleCat);
+        } else {
             $(document).on('click', '.title-cat', titleCatClick);
-            boolEventListener = handleBool(boolEventListener);
+            boolTitleCat = handleBool(boolTitleCat);
         }
     };
-    //FIM STICKY EFFECT
+    //END STICKY EFFECT
 
     //WINDOW EFFECTS
     stickyEffect();
@@ -184,21 +218,14 @@ import {
     $(window).scroll(contentControl);
     $(window).resize(contentControl);
 
-    btnSocialContainer.on('click', (e) => {
-        const socialContainer = $('.social-container');
-        toggleClass(btnSocialContainerIcon, 'fa-caret-left');
-        socialContainer.animate(animateSocialContainer(getSocialContainerWidth()), 700);
-    });
-
+    //CLICKS
+    //BUTTON SOCIAL
+    btnSocialContainer.on('click', btnSocialClick);
     //MENU STICKY
-    btnMenu.on('click', ((e) => {
-        e.stopPropagation();
-        slideToggle($('nav'));
-        toggleClass(btnIcon, 'fa-xmark');
-        document.addEventListener('click', (e) => { if (($('nav') !== e.target && !$('nav').has(e.target).length) || getWindowHeight() > 70) hideNavSticky(); });
-    }));
-
-    //MENU LOGO LINK CLICK    
+    btnMenu.on('click', btnMenuClick);
+    //NAV MENU LINK CLICK
+    $(document).on('click', 'nav.menu a', navMenuClick);
+    //MENU LOGO LINK
     menuLogoLink.on({
         mouseenter: (e) => {
             const target = e.currentTarget.className.split('-');
@@ -221,16 +248,4 @@ import {
             }
         },
     });
-
-    //NAV MENU LINK CLICK
-    $(document).on('click', 'nav.menu a', ((e) => {
-        const target = lowercase(e.currentTarget.className.split('-')[0]);
-        removeClassList('.nav-selected', 'nav-selected');
-        $('html, body').animate(animateNavMenu(target), 1700);
-        if (isSticky()) hideNavSticky();
-    }));
 })(jQuery);
-
-document.onkeydown = fkey;
-document.onkeypress = fkey;
-document.onkeyup = fkey;

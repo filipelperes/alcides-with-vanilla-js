@@ -8,9 +8,8 @@ export const toggleDisplay = (bool) => {
     };
 };
 
-export const applyCSS = (el, obj) => { el.css(obj); };
-
-export const removeStyle = (el) => { el.removeAttr('style'); };
+export const applyCSS = (el, obj) => el.css(obj);
+export const removeStyle = (el) => el.removeAttr('style');
 
 export const cssHoverMenuLogo = () => {
     const color = isMain() ? 'secondary' : 'main';
@@ -26,7 +25,7 @@ export const cssHoverMenuLogo = () => {
 
 export const cssLinkMenuLogo = () => {
     const color = isSticky() && getWindowHeight() < getOffSetTop('main') ? 'fourth-color'
-        : isMain() ? 'secondary-border'
+        : isMain() ? 'secondary-light'
             : 'secondary-color';
     return {
         'color': `var(--${color})`
@@ -34,13 +33,13 @@ export const cssLinkMenuLogo = () => {
 };
 
 export const cssMenuLogo = () => {
-    const bg = isMain() ? 'footer' : 'secondary';
+    const bg = isMain() ? 'main' : 'secondary';
     return {
         'border': '0 1px 1px 1px solid var(--main-color)',
         'border-bottom-left-radius': '7px',
         'border-bottom-right-radius': '7px',
-        'box-shadow': '0px 2px 2px var(--main-box-shadow)',
-        'background': `var(--${bg}-border)`,
+        'box-shadow': '0px 2px 2px var(--main-lighter)',
+        'background': `var(--${bg}-light)`,
         'text-shadow': 'none',
         'position': 'fixed',
         'top': '0',
@@ -62,7 +61,7 @@ export const cssSocialContainer = (width) => {
 
 export const cssButtonSocialContainer = () => {
     return {
-        'background': `var(--${getWindowHeight() > (getOffSetTop('main') / 2) ? 'footer' : 'secondary'}-border)`,
+        'background': `var(--${getWindowHeight() > (getOffSetTop('main') / 2) ? 'main' : 'secondary'}-light)`,
     };
 };
 
@@ -107,9 +106,9 @@ export const cssNav = {
     'right': '30px',
     'margin': '0',
     'flex-direction': 'column',
-    'border': '1px solid var(--footer-border)',
+    'border': '1px solid var(--main-light)',
     'text-shadow': 'none',
-    'background': 'var(--secondary-border)',
+    'background': 'var(--secondary-light)',
 };
 
 export const cssNavLink = {
@@ -123,7 +122,7 @@ export const cssNavLinkSecond = {
     'border-right': '0',
     'border-left': '0',
 };
-export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--footer-border)', };
+export const cssNavLinkNotLast = { 'border-bottom': '1px solid var(--main- light)', };
 
 export const animateSocialContainer = (width) => {
     return {
@@ -138,6 +137,6 @@ export const animateNavMenu = (target) => {
 };
 
 //VANILLA JS
-export const applyImg = (query, val) => { notNull(query) ? document.querySelector(query).style.backgroundImage = `url(imgs/${val}.png)` : false; };
-export const applyMargin = (query, val) => { notNull(query) ? document.querySelector(query).style.marginTop = val : false; };
-export const removeAttrStyle = (query) => { document.querySelector(query).removeAttribute('style'); };
+export const applyImg = (query, val) => notNull(query) ? document.querySelector(query).style.backgroundImage = `url(imgs/${val}.png)` : false;
+export const applyMargin = (query, val) => notNull(query) ? document.querySelector(query).style.marginTop = val : false;
+export const removeAttrStyle = (query) => document.querySelector(query).removeAttribute('style');
